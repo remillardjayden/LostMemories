@@ -22,7 +22,6 @@ public class Game {
         Memory memory11 = new Memory(10, "Yourself.",  name.substring(0,1) + ": Where do I go? I can't go back, I guess I'll just sleep here..");
         Memory memory12 = new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         Memory memory13 = new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
-        System.out.println(user.accessMemories());
         memories[0] = memory1;
         memories[1] = memory2;
         memories[2] = memory3;
