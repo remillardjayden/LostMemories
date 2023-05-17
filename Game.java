@@ -8,6 +8,7 @@ public class Game {
         use.close();
         Random rand= new Random();
         Memory[] memories = new Memory[13];
+        Character[][] platform = new Character[50][50];
         Player user = new Player(20, name, memories);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         Memory memory2 = new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
@@ -22,20 +23,6 @@ public class Game {
         Memory memory11 = new Memory(10, "Yourself.",  name.substring(0,1) + ": Where do I go? I can't go back, I guess I'll just sleep here..");
         Memory memory12 = new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         Memory memory13 = new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
-        memories[0] = memory1;
-        memories[1] = memory2;
-        memories[2] = memory3;
-        memories[3] = memory4;
-        memories[4] = memory5;
-        memories[5] = memory6;
-        memories[6] = memory7;
-        memories[7] = memory8;
-        memories[8] = memory9;
-        memories[9] = memory10;
-        memories[10] = memory11;
-        memories[11] = memory12;
-        memories[12] = memory13;
-        System.out.println(memories[rand.nextInt(13)]);
     }
 }
 // Far Away For You

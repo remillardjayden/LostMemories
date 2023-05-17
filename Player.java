@@ -1,14 +1,9 @@
-public class Player {
+public class Player extends Character {
     private int memoryCount;
-    private String name;
-    private int totalHp;
-    private int currentHp;
     private Memory recentMemory;
     private Memory[] allMemories;
-    public Player(int totalHp, String name, Memory[] memories) {
-        this.name = name;
-        this.totalHp = totalHp;
-        currentHp = totalHp;
+    public Player(int totalHP, String name, Memory[] memories) {
+        super(name, totalHP);
         memoryCount = 0;
         recentMemory = null;
         allMemories = memories;
@@ -18,9 +13,7 @@ public class Player {
         allMemories[m.getStrength()] = m;
     }
     public Memory remember() { return recentMemory; }
-    public String getName() { return name; }
     public int getMemoryCount() { return memoryCount; }
-    public String getHp() { return currentHp + "/" + totalHp; }
     public String accessMemories() {
         String mems = "[";
         for(int i = 0; i < allMemories.length-1; i++) {
