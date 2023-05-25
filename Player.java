@@ -30,4 +30,7 @@ public class Player extends Character {
         }
         return mems;
     }
+    public String toString() {
+        return super.getName();
+    }
 }
