@@ -10,7 +10,6 @@ public class MyGame {
         Memory[] memories = new Memory[13];
         Character[][] platform = new Character[50][50];
         Player user = new Player(20, name, memories);
-        Player yes = new Player(0, "u", memories);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         Memory memory2 = new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
         Memory memory3 = new Memory(2, "Run.", "R: After him! Don't let him escape.\nL: We've got you now, kid! You're not getting away this time.");
@@ -28,8 +27,6 @@ public class MyGame {
             for(int c = 0; c < 50; c++) {
                 if(r == 24 && c == 5) {
                     platform[r][c] = user;
-                } else if(r < 5 || c < 5 || r > 44 || c > 44){
-                    platform[r][c] = yes;
                 }
             }
         }
