@@ -41,3 +41,4 @@ public class MyGame {
     }
 }
 // Far Away For You
+// Peek, Move (Left, Right, Forward, Backwards [L, R, F, D]), Inspect, Open Map, Return
