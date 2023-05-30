@@ -10,6 +10,8 @@ public class MyGame {
         Memory[] memories = new Memory[13];
         Character[][] platform = new Character[50][50];
         Player user = new Player(20, name, memories);
+        int placeX = rand.nextInt(50);
+        int placeY = rand.nextInt(50);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         Memory memory2 = new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
         Memory memory3 = new Memory(2, "Run.", "R: After him! Don't let him escape.\nL: We've got you now, kid! You're not getting away this time.");
@@ -25,7 +27,7 @@ public class MyGame {
         Memory memory13 = new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
         for(int r = 0; r < 50; r++) {
             for(int c = 0; c < 50; c++) {
-                if(r == 24 && c == 5) {
+                if(r == placeY && c == placeX) {
                     platform[r][c] = user;
                 }
             }
