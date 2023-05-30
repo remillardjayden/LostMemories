@@ -39,6 +39,10 @@ public class MyGame {
             System.out.println("");
         }
     }
+    public String peek(char direction) {
+        String ret = "";
+        return ret;
+    }
 }
 // Far Away For You
 // Peek, Move (Left, Right, Forward, Backwards [L, R, F, D]), Inspect, Open Map, Return
