@@ -2,8 +2,8 @@ public class Player extends Character {
     private int memoryCount;
     private Memory recentMemory;
     private Memory[] allMemories;
-    public Player(int totalHP, String name, Memory[] memories) {
-        super(name, totalHP);
+    public Player(int totalHP, String name, Memory[] memories, String dir) {
+        super(name, totalHP, dir);
         memoryCount = 0;
         recentMemory = null;
         allMemories = memories;

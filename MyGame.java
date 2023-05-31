@@ -9,7 +9,7 @@ public class MyGame {
         Random rand= new Random();
         Memory[] memories = new Memory[13];
         Character[][] platform = new Character[50][50];
-        Player user = new Player(20, name, memories);
+        Player user = new Player(20, name, memories, "Forward");
         int placeX = rand.nextInt(50);
         int placeY = rand.nextInt(50);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
@@ -45,4 +45,4 @@ public class MyGame {
     }
 }
 // Far Away For You
-// Peek, Move (Left, Right, Forward, Backwards [L, R, F, D]), Inspect, Open Map, Return
+// Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return

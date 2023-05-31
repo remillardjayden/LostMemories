@@ -3,11 +3,13 @@ public abstract class Character {
     private int totalHP;
     private int currentHP;
     private boolean isDead;
-    public Character(String name, int hp) {
+    private String direction;
+    public Character(String name, int hp, String dir) {
         this.name = name;
         totalHP = hp;
         currentHP = hp;
         isDead = false;
+        direction = dir;
     }
     public String getName() { return name; }
     public String getHP() { return currentHP + "/" + totalHP; }
@@ -21,4 +23,5 @@ public abstract class Character {
         if(currentHP <= 0) { isDead = true; }
     }
     public boolean isDead() { return isDead; }
+    public String returnDirection() { return direction; }
 }
