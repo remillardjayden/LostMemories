@@ -36,7 +36,7 @@ public class MyGame {
             for(int c = 0; c < 50; c++) {
                 System.out.print(platform[r][c] + " ");
             }
-            System.out.println("");
+            System.out.println("\n");
         }
     }
     public String peek(char direction) {
