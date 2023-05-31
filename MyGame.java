@@ -32,12 +32,7 @@ public class MyGame {
                 }
             }
         }
-        for(int r = 0; r < 50; r++) {
-            for(int c = 0; c < 50; c++) {
-                System.out.print(platform[r][c] + " ");
-            }
-            System.out.println("\n");
-        }
+        System.out.println(user.getInv());
     }
     public String peek(char direction) {
         String ret = "";
@@ -45,4 +40,4 @@ public class MyGame {
     }
 }
 // Far Away For You
-// Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return
+// Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return, Inventory System

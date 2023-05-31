@@ -2,11 +2,13 @@ public class Player extends Character {
     private int memoryCount;
     private Memory recentMemory;
     private Memory[] allMemories;
+    private Item[] inventory;
     public Player(int totalHP, String name, Memory[] memories, String dir) {
         super(name, totalHP, dir);
         memoryCount = 0;
         recentMemory = null;
         allMemories = memories;
+        inventory = new Item[9];
     }
     public void addMemory(Memory m) {
         recentMemory = m;
@@ -29,6 +31,22 @@ public class Player extends Character {
             mems += "UNKNOWN]";
         }
         return mems;
+    }
+    public String getInv() {
+        String fin = "[";
+        for(int i = 0; i < 9; i++) {
+            if(inventory[i] == null) {
+                fin += "_____, ";
+            } else {
+                fin += inventory[i].getName() + ", ";
+            }
+        }
+        if(inventory[8] == null) {
+            fin += "_____]";
+        } else {
+            fin += inventory[8].getName() + "]";
+        }
+        return fin;
     }
     public String toString() {
         return super.getName();
