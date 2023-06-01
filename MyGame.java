@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 public class MyGame {
     public static void main(String[] args) {
         Scanner use = new Scanner(System.in);
@@ -7,9 +8,8 @@ public class MyGame {
         String name = use.nextLine();
         use.close();
         Random rand= new Random();
-        Memory[] memories = new Memory[13];
         Character[][] platform = new Character[50][50];
-        Player user = new Player(20, name, memories, "Forward");
+        Player user = new Player(20, name, "Forward");
         int placeX = rand.nextInt(50);
         int placeY = rand.nextInt(50);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
@@ -32,11 +32,13 @@ public class MyGame {
                 }
             }
         }
-        System.out.println(user.getInv());
     }
-    public String peek(char direction) {
-        String ret = "";
-        return ret;
+    public static void slp(int time) {
+        try {
+            TimeUnit.SECONDS.sleep(time);
+        } catch(InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 }
 // Far Away For You
