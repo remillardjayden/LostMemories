@@ -74,7 +74,7 @@ public class MyGame {
                     if(platform[r][c] != user) {
                         System.out.print("     ");
                     } else {
-                        System.out.println(user + " ");
+                        System.out.print(user + " ");
                     }
                 } else if(map[r][c] != null){
                     System.out.print(map[r][c] + " ");
