@@ -8,10 +8,36 @@ public class MyGame {
         String name = use.nextLine();
         use.close();
         Random rand= new Random();
-        Character[][] platform = new Character[50][50];
-        Player user = new Player(20, name, "Forward");
-        int placeX = rand.nextInt(50);
-        int placeY = rand.nextInt(50);
+        Character[][] platform = new Character[25][25];
+        Wall[][] map = new Wall[25][25];
+        int xPlace = 0;
+        int yPlace = 0;
+        int orientation;
+        for(int r = 0; r < 25; r++) {
+            for(int c = 0; c < 25; c++) {
+                if(r == 0 || c == 0 || r == 24 || c == 24) {
+                    orientation = rand.nextInt(2) + 1;
+                    if(orientation == 1) { 
+                        map[r][c] = new Wall(c, r, "Horizontal");
+                    } else {
+                        map[r][c] = new Wall(c, r, "Vertical");
+                    }
+                }
+                if(c % 3 == 0 && r % 2 == 0) {
+                    xPlace = rand.nextInt(24)+1;
+                    yPlace = rand.nextInt(24)+1;
+                    orientation = rand.nextInt(2) + 1;
+                    if(orientation == 1) { 
+                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal");
+                    } else {
+                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical");
+                    }
+                }
+            }
+        }
+        /* int placeX = rand.nextInt(25);
+        int placeY = rand.nextInt(25); */
+        Player user = new Player(20, name, "Forward", 1, 1);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         Memory memory2 = new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
         Memory memory3 = new Memory(2, "Run.", "R: After him! Don't let him escape.\nL: We've got you now, kid! You're not getting away this time.");
@@ -25,19 +51,36 @@ public class MyGame {
         Memory memory11 = new Memory(10, "Yourself.",  name.substring(0,1) + ": Where do I go? I can't go back, I guess I'll just sleep here..");
         Memory memory12 = new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         Memory memory13 = new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
-        for(int r = 0; r < 50; r++) {
-            for(int c = 0; c < 50; c++) {
-                if(r == placeY && c == placeX) {
+        for(int r = 0; r < 25; r++) {
+            for(int c = 0; c < 25; c++) {
+                if(r == user.getY() && c == user.getX()) {
                     platform[r][c] = user;
                 }
             }
         }
+        MyGame.openMap(map, user, platform);
     }
     public static void slp(int time) {
         try {
             TimeUnit.SECONDS.sleep(time);
         } catch(InterruptedException ex) {
             ex.printStackTrace();
+        }
+    }
+    public static void openMap(Wall[][] map, Player user, Character[][] platform) {
+        for(int r = 0; r < 25; r++) {
+            for(int c = 0; c < 25; c++) {
+                if(map[r][c] == null) {
+                    if(platform[r][c] != user) {
+                        System.out.print("     ");
+                    } else {
+                        System.out.println(user + " ");
+                    }
+                } else if(map[r][c] != null){
+                    System.out.print(map[r][c] + " ");
+                }
+            }
+            System.out.println("\n");
         }
     }
 }

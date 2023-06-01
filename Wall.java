@@ -1,14 +1,14 @@
 public class Wall {
     private int wallX;
     private int wallY;
-    private String direction;
+    private String orientation;
     public Wall(int x, int y, String facing) {
         wallX = x;
         wallY = y;
-        direction = facing;
+        orientation = facing;
     }
     public int returnX() { return wallX; }
     public int returnY() { return wallY; }
-    public String returnDirection() { return direction; }
-    public String toString() { return "wall"; }
+    public String returnOrientation() { return orientation; }
+    public String toString() { return "WALL"; }
 }
