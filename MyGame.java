@@ -41,9 +41,14 @@ public class MyGame {
                 if(r == 0 || c == 0 || r == 24 || c == 24) {
                     orientation = rand.nextInt(2) + 1;
                     if(orientation == 1) { 
-                        map[r][c] = new Wall(c, r, "Horizontal");
+                        map[r][c] = new Wall(c, r, "Horizontal", "wall");
                     } else {
-                        map[r][c] = new Wall(c, r, "Vertical");
+                        map[r][c] = new Wall(c, r, "Vertical", "wall");
+                    }
+                    if(c == 0 && r == 12 || c == 24 && r == 12) {
+                        map[r][c] = new Wall(c, r, "Vertical", "exit");
+                    } else if (r == 0 && c == 12 || r == 24 && c == 12) {
+                        map[r][c] = new Wall(c, r, "Horizontal", "exit");
                     }
                 }
                 if(c % 3 == 0 && r % 2 == 0) {
@@ -51,9 +56,9 @@ public class MyGame {
                     yPlace = rand.nextInt(23)+1;
                     orientation = rand.nextInt(2) + 1;
                     if(orientation == 1) { 
-                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal");
+                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal", "wall");
                     } else {
-                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical");
+                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "wall");
                     }
                 }
             }
