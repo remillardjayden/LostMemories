@@ -2,6 +2,29 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 public class MyGame {
+    public static void slp(int time) {
+        try {
+            TimeUnit.SECONDS.sleep(time);
+        } catch(InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public static void openMap(Wall[][] map, Player user, Character[][] platform) {
+        for(int r = 0; r < 25; r++) {
+            for(int c = 0; c < 25; c++) {
+                if(map[r][c] == null) {
+                    if(platform[r][c] != user) {
+                        System.out.print("     ");
+                    } else {
+                        System.out.print(user + " ");
+                    }
+                } else if(map[r][c] != null){
+                    System.out.print(map[r][c] + " ");
+                }
+            }
+            System.out.println("\n");
+        }
+    }
     public static void main(String[] args) {
         Scanner use = new Scanner(System.in);
         System.out.println("N: Enter your name: ");
@@ -59,29 +82,6 @@ public class MyGame {
             }
         }
         MyGame.openMap(map, user, platform);
-    }
-    public static void slp(int time) {
-        try {
-            TimeUnit.SECONDS.sleep(time);
-        } catch(InterruptedException ex) {
-            ex.printStackTrace();
-        }
-    }
-    public static void openMap(Wall[][] map, Player user, Character[][] platform) {
-        for(int r = 0; r < 25; r++) {
-            for(int c = 0; c < 25; c++) {
-                if(map[r][c] == null) {
-                    if(platform[r][c] != user) {
-                        System.out.print("     ");
-                    } else {
-                        System.out.print(user + " ");
-                    }
-                } else if(map[r][c] != null){
-                    System.out.print(map[r][c] + " ");
-                }
-            }
-            System.out.println("\n");
-        }
     }
 }
 // Far Away For You
