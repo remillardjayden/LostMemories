@@ -47,8 +47,8 @@ public class MyGame {
                     }
                 }
                 if(c % 3 == 0 && r % 2 == 0) {
-                    xPlace = rand.nextInt(24)+1;
-                    yPlace = rand.nextInt(24)+1;
+                    xPlace = rand.nextInt(23)+1;
+                    yPlace = rand.nextInt(23)+1;
                     orientation = rand.nextInt(2) + 1;
                     if(orientation == 1) { 
                         map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal");
@@ -58,8 +58,14 @@ public class MyGame {
                 }
             }
         }
-        /* int placeX = rand.nextInt(25);
-        int placeY = rand.nextInt(25); */
+        int placeX = rand.nextInt(23)+1;
+        int placeY = rand.nextInt(23)+1;
+        if(map[placeY][placeX] != null) {
+            while(map[placeY][placeX] != null) {
+                placeX = rand.nextInt(23)+1;
+                placeY = rand.nextInt(23)+1;
+            }
+        }
         Player user = new Player(20, name, "Forward", 1, 1);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         Memory memory2 = new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
@@ -85,4 +91,4 @@ public class MyGame {
     }
 }
 // Far Away For You
-// Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return, Inventory System
+// [Peek], Move (Left, Right, Forward [L, R, F]), [Inspect], Open Map, Return, Inventory System
