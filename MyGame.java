@@ -66,7 +66,7 @@ public class MyGame {
                 placeY = rand.nextInt(23)+1;
             }
         }
-        Player user = new Player(20, name, "Forward", 1, 1);
+        Player user = new Player(20, name, "Forward", placeX, placeY);
         Memory memory1 = new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         Memory memory2 = new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
         Memory memory3 = new Memory(2, "Run.", "R: After him! Don't let him escape.\nL: We've got you now, kid! You're not getting away this time.");
