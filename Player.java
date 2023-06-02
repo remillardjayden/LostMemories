@@ -39,7 +39,7 @@ public class Player extends Character {
         return fin;
     }
     public String inspect(Item item) {
-        return item.getDesc();
+        return "Name: " + item.getName() + "\nDescription: " + item.getDesc();
     }
     public String goBack() {
         steps--;
