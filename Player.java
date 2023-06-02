@@ -21,6 +21,7 @@ public class Player extends Character {
     public int getSteps() { return steps; }
     public int getX() { return x; }
     public int getY() { return y; }
+    public Item[] getInventory() { return inventory; }
     public String getInv() {
         String fin = "[";
         for(int i = 0; i < 8; i++) {
@@ -36,6 +37,9 @@ public class Player extends Character {
             fin += inventory[8].getName() + "]";
         }
         return fin;
+    }
+    public String inspect(Item item) {
+        return item.getDesc();
     }
     public String goBack() {
         steps--;
