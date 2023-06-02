@@ -124,4 +124,4 @@ public class MyGame {
     }
 }
 // Far Away For You
-// [Peek], [Move (Left, Right, Forward [L, R, F])], Inspect, Open Map, Return, [Inventory System]
+// [Peek], [Move (Left, Right, Forward [L, R, F])], Inspect, Open Map, Return, Inventory System
