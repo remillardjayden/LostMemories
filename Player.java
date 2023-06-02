@@ -30,6 +30,28 @@ public class Player extends Character {
             }
         }
     }
+    public void dropItem(int index) {
+        inventory[index] = null;
+    }
+    public void fixInv() {
+        Item temp;
+        int nulValue = 0;
+        for(int i = 0; i < inventory.length-1; i++) {
+            if(inventory[i] == null && inventory[i+1] != null) {
+                for(int p = 0; p < inventory.length; p++) {
+                    if(inventory[p] == null) {
+                        nulValue = p;
+                        break;
+                    }
+                }
+                for(int x = i+1; x > nulValue; x--) {
+                    temp = inventory[x];
+                    inventory[x] = inventory[x-1];
+                    inventory[x-1] = temp;
+                }
+            }
+        }
+    }
     public String getInv() {
         String fin = "[";
         for(int i = 0; i < 8; i++) {

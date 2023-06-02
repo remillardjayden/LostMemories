@@ -101,7 +101,9 @@ public class MyGame {
         new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
         // Items
-        new Item("banana", "just a banana?");
+        new Item("Banana", "Just a banana?");
+        new Item("Steve", "OUH");
+        new Item("Stick", "It's sticky");
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
@@ -109,9 +111,15 @@ public class MyGame {
                 }
             }
         }
-        user.pickUp(Item.allItems.get(0));
-        System.out.println(user.inspect(user.getInventory()[0]));
+        for(int i = 0; i < Item.allItems.size(); i++) {
+            user.pickUp(Item.allItems.get(i));
+            System.out.println(user.getInv());
+        }
+        user.dropItem(0);
+        System.out.println(user.getInv());
+        user.fixInv();
+        System.out.println(user.getInv());
     }
 }
 // Far Away For You
-// [Peek], [Move (Left, Right, Forward [L, R, F])], [Inspect], Open Map, Return, Inventory System
+// [Peek], [Move (Left, Right, Forward [L, R, F])], Inspect, Open Map, Return, [Inventory System]
