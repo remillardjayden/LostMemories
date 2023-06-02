@@ -104,6 +104,8 @@ public class MyGame {
         new Item("Banana", "Just a banana?");
         new Item("Steve", "OUH");
         new Item("Stick", "It's sticky");
+        // Enemies
+        new Enemy("Bat", 50, "Left");
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
