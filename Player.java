@@ -22,6 +22,14 @@ public class Player extends Character {
     public int getX() { return x; }
     public int getY() { return y; }
     public Item[] getInventory() { return inventory; }
+    public void pickUp(Item item) {
+        for(int i = 0; i < inventory.length; i++) {
+            if(inventory[i] == null) {
+                inventory[i] = item;
+                break;
+            }
+        }
+    }
     public String getInv() {
         String fin = "[";
         for(int i = 0; i < 8; i++) {

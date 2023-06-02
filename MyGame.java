@@ -86,6 +86,7 @@ public class MyGame {
                 map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "door");
             }
         }
+        // Memories
         new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
         new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
         new Memory(2, "Run.", "R: After him! Don't let him escape.\nL: We've got you now, kid! You're not getting away this time.");
@@ -99,6 +100,8 @@ public class MyGame {
         new Memory(10, "Yourself.",  name.substring(0,1) + ": Where do I go? I can't go back, I guess I'll just sleep here..");
         new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
+        // Items
+        new Item("banana", "just a banana?");
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
@@ -106,7 +109,8 @@ public class MyGame {
                 }
             }
         }
-        MyGame.openMap(map, user, platform);
+        user.pickUp(Item.allItems.get(0));
+        System.out.println(user.inspect(user.getInventory()[0]));
     }
 }
 // Far Away For You

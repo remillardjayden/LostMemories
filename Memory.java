@@ -3,7 +3,7 @@ public class Memory {
     private int index;
     private String name;
     private String contents;
-    private ArrayList<Memory> allmemories;
+    public static ArrayList<Memory> allmemories;
     public Memory(int index, String name, String hold) {
         this.index = index;
         this.name = name;
