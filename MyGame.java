@@ -106,6 +106,7 @@ public class MyGame {
         new Item("Stick", "It's sticky");
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry");
+        new Enemy("Bat", 50, "Right", "He's Count Dracula");
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
