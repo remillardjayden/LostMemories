@@ -25,6 +25,34 @@ public class MyGame {
             System.out.println("\n");
         }
     }
+    public static String peek(int direction, Character[][] platform, Wall[][] map, Player user) {
+        if(direction == 1) {
+            if(platform[user.getY()][user.getX()-1] == null) {
+                if(map[user.getY()][user.getX()-1] != null) {
+                    return "There's a wall";
+                }
+            } else if(platform[user.getY()][user.getX()-1] != null) {
+                return "There's an enemy there";
+            }
+        } else if(direction == 1) {
+            if(platform[user.getY()-1][user.getX()] == null) {
+                if(map[user.getY()-1][user.getX()] != null) {
+                    return "There's a wall";
+                }
+            } else if(platform[user.getY()-1][user.getX()] != null) {
+                return "There's an enemy there";
+            }
+        } else {
+            if(platform[user.getY()][user.getX()+1] == null) {
+                if(map[user.getY()][user.getX()+1] != null) {
+                    return "There's a wall";
+                }
+            } else if(platform[user.getY()][user.getX()+1] != null) {
+                return "There's an enemy there";
+            }
+        }
+        return "There's nothing there";
+    }
     public static void main(String[] args) {
         Scanner use = new Scanner(System.in);
         System.out.println("N: Enter your name: ");
