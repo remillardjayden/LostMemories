@@ -3,7 +3,7 @@ public class Player extends Character {
     private Memory recentMemory;
     private Item[] inventory;
     private int steps;
-    private int x, y;
+    private int x, y, prevX, prevY;
     public Player(int totalHP, String name, String dir, int x, int y) {
         super(name, totalHP, dir);
         memoryCount = 0;
@@ -12,6 +12,8 @@ public class Player extends Character {
         steps = 0;
         this.x = x;
         this.y = y;
+        prevX = x;
+        prevY = y;
     }
     public void addMemory(Memory m) {
         recentMemory = m;
@@ -21,6 +23,16 @@ public class Player extends Character {
     public int getSteps() { return steps; }
     public int getX() { return x; }
     public int getY() { return y; }
+    public int getPrevX() { return prevX; }
+    public int getPrevY() { return prevY; }
+    public void setX(int newX) {
+        prevX = x;
+        x = newX;
+    }
+    public void setY(int newY) {
+        prevY = y;
+        y = newY;
+    }
     public Item[] getInventory() { return inventory; }
     public void pickUp(Item item) {
         for(int i = 0; i < inventory.length; i++) {
@@ -73,6 +85,8 @@ public class Player extends Character {
     }
     public String goBack() {
         steps--;
+        x = prevX;
+        y = prevY;
         return "You returned to your previous location";
     }
 }
