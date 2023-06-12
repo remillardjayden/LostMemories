@@ -9,6 +9,13 @@ public class MyGame {
             ex.printStackTrace();
         }
     }
+    public static void slmp(int time) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(time);
+        } catch(InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
     public static void openMap(Wall[][] map, Player user, Character[][] platform) {
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
