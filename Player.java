@@ -35,14 +35,29 @@ public class Player extends Character {
             } else if(map[y][x-1] != null) {
                 return "You can't go there, that's a wall.";
             } else {
+                super.damage(platform[y][x-1].getDmg());
                 return "It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!";
             }
         } else if(direction == 2) {
-            x++;
-            return "You moved right";
+            if(map[y][x+1] == null && platform[y][x+1] == null) {
+                x++;
+                return "You moved right";
+            } else if(map[y][x+1] != null) {
+                return "You can't go there, that's a wall.";
+            } else {
+                super.damage(platform[y][x+1].getDmg());
+                return "It's a " + platform[y][x+1].getName() + "! You take " + platform[y][x+1].getDmg() + " damage!";
+            }
         } else {
-            y--;
-            return "You moved forward";
+            if(map[y-1][x] == null && platform[y-1][x] == null) {
+                y--;
+                return "You moved forward";
+            } else if(map[y-1][x] != null) {
+                return "You can't go there, that's a wall.";
+            } else {
+                super.damage(platform[y-1][x].getDmg());
+                return "It's a " + platform[y-1][x].getName() + "! You take " + platform[y-1][x].getDmg() + " damage!";
+            }
         }
     }
     public void setX(int newX) {
