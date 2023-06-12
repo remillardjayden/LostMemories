@@ -141,9 +141,7 @@ public class MyGame {
             }
         }
         user.pickUp(Item.allItems.get(0));
-        System.out.println(user.move(1, platform, map));
-        user.goBack();
     }
 }
 // Far Away For You
-// Peek, [Move (Left, Right, Forward [L, R, F])], Inspect, Open Map, Return, Inventory System
+// Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return, Inventory System
