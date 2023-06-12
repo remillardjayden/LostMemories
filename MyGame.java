@@ -168,6 +168,9 @@ public class MyGame {
         slmp(500);
         System.out.print("[" + user.getName().charAt(0) + "]: ");
         slowWrite("No matter... guess I'll look for the exit..");
+        while(user.getX() != 0 && user.getY() != 12 || user.getX() != 12 && user.getY() != 0 || user.getX() != 24 && user.getY() != 12 || user.getX() != 12 && user.getY() != 24) {
+
+        }
     }
 }
 // Far Away For You
