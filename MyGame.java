@@ -129,8 +129,6 @@ public class MyGame {
         new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
         // Items
-        new Item("Banana", "Just a banana?");
-        new Item("Steve", "OUH");
         new Item("Stick", "It's sticky");
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry");
@@ -142,14 +140,8 @@ public class MyGame {
                 }
             }
         }
-        for(int i = 0; i < Item.allItems.size(); i++) {
-            user.pickUp(Item.allItems.get(i));
-            System.out.println(user.getInv());
-        }
-        user.dropItem(0);
-        System.out.println(user.getInv());
-        user.fixInv();
-        System.out.println(user.getInv());
+        user.pickUp(Item.allItems.get(0));
+        openMap(map, user, platform);
     }
 }
 // Far Away For You
