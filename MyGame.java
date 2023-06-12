@@ -169,7 +169,17 @@ public class MyGame {
         System.out.print("[" + user.getName().charAt(0) + "]: ");
         slowWrite("No matter... guess I'll look for the exit..");
         while(user.getX() != 0 && user.getY() != 12 || user.getX() != 12 && user.getY() != 0 || user.getX() != 24 && user.getY() != 12 || user.getX() != 12 && user.getY() != 24) {
-
+            use = new Scanner(System.in);
+            System.out.println("[N]: Select an option: \n1: Move\n2: Peek\n3: Open Inventory\n4: Open Map");
+            int option = use.nextInt();
+            use.close();
+            while(option > 4 || option < 0) {
+                System.out.println("[N]: That isn't a valid option, try again");
+                use = new Scanner(System.in);
+                System.out.println("[N]: Select an option: \n1: Move\n2: Peek\n3: Open Inventory\n4: Open Map");
+                option = use.nextInt();
+                use.close();
+            }
         }
     }
 }
