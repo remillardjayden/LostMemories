@@ -19,7 +19,7 @@ public class MyGame {
     public static void slowWrite(String txt) {
         for(int i = 0; i < txt.length(); i++) {
             System.out.print(txt.charAt(i));
-            slmp(75);
+            slmp(50);
         }
         System.out.println();
     }
@@ -136,19 +136,19 @@ public class MyGame {
             }
         }
         // Memories
-        new Memory(0, "Fall.", "$#!@^*: Falling falling, down you go. When you do land, no one will know. . .");
-        new Memory(1, "Away.", name + "?: Where are you taking me? Someone help! Please! Anyone!");
-        new Memory(2, "Run.", "R: After him! Don't let him escape.\nL: We've got you now, kid! You're not getting away this time.");
-        new Memory(3, "Accountable.", "R: It was you... wasn't it? You're the one that-");
-        new Memory(4, "Whispers.", "R + L: Maybe we should talk to him, he seems a little... off.");
-        new Memory(5, "Altered.", name.substring(0,1) + ": Oh god... God no I'm a horrible person. I just...");
-        new Memory(6, "Youth.", name.substring(0,1) + ": What can I do? I guess I should find a place to stay...");
-        new Memory(7, "Finale.", "*drip*...*drip*...*drip*\nD: *wheeze*..I guess this is how I go...Goodbye..*thud*\n" + name.substring(0,1) + ": What have I done..?");
-        new Memory(8, "Overcome.", "D: There you are, buddy. I knew you'd come around at some- *STAB* ...oh..");
-        new Memory(9, "Retreat.", "D: I know you're here! I can hear you! Come on out, I don't bite! I'm just a little drunk, I'm sorry."); 
-        new Memory(10, "Yourself.",  name.substring(0,1) + ": Where do I go? I can't go back, I guess I'll just sleep here..");
-        new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
-        new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
+        new Memory(0, "Fall.", "[$#!@^*]: Falling falling, down you go. When you do land, no one will know. . .");
+        new Memory(1, "Away.", name + "[?]: Where are you taking me? Someone help! Please! Anyone!");
+        new Memory(2, "Run.", "[R]: After him! Don't let him escape.\n[L]: We've got you now, kid! You're not getting away this time.");
+        new Memory(3, "Accountable.", "[R]: It was you... wasn't it? You're the one that-");
+        new Memory(4, "Whispers.", "[R + L]: Maybe we should talk to him, he seems a little... off.");
+        new Memory(5, "Altered.", "[" + name.substring(0,1) + "]: Oh god... God no I'm a horrible person. I just...");
+        new Memory(6, "Youth.", "[" + name.substring(0,1) + "]: What can I do? I guess I should find a place to stay...");
+        new Memory(7, "Finale.", "*drip*...*drip*...*drip*\n[D]: *wheeze*..I guess this is how I go...Goodbye..*thud*\n[]" + name.substring(0,1) + "]: What have I done..?");
+        new Memory(8, "Overcome.", "[D]: There you are, buddy. I knew you'd come around at some- *STAB* ...oh..");
+        new Memory(9, "Retreat.", "[D]: I know you're here! I can hear you! Come on out, I don't bite! I'm just a little drunk, I'm sorry."); 
+        new Memory(10, "Yourself.",  "[" + name.substring(0,1) + "]: Where do I go? I can't go back, I guess I'll just sleep here..");
+        new Memory(11, "Outrun.", "[D]: Do you think you can escape?! Get back here you little brat!");
+        new Memory(12, "Upbringing.", "[M]: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
         // Items
         new Item("Stick", "It's sticky", 3);
         // Enemies
@@ -162,10 +162,13 @@ public class MyGame {
             }
         }
         user.pickUp(Item.allItems.get(0));
-        openMap(map, user, platform);
         // Start of story
-        System.out.print("[" + user.getName().charAt(0) + "]: ");
+        System.out.println(user.getName());
+        /* System.out.print("[" + user.getName().charAt(0) + "]: ");
         slowWrite("Man this is such a weird maze.. how long have I been walking?");
+        slmp(500);
+        System.out.print("[" + user.getName().charAt(0) + "]: ");
+        slowWrite("No matter... guess I'll look for the exit.."); */
     }
 }
 // Far Away For You
