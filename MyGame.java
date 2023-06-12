@@ -163,12 +163,11 @@ public class MyGame {
         }
         user.pickUp(Item.allItems.get(0));
         // Start of story
-        System.out.println(user.getName());
-        /* System.out.print("[" + user.getName().charAt(0) + "]: ");
+        System.out.print("[" + user.getName().charAt(0) + "]: ");
         slowWrite("Man this is such a weird maze.. how long have I been walking?");
         slmp(500);
         System.out.print("[" + user.getName().charAt(0) + "]: ");
-        slowWrite("No matter... guess I'll look for the exit.."); */
+        slowWrite("No matter... guess I'll look for the exit..");
     }
 }
 // Far Away For You
