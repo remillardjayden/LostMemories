@@ -75,10 +75,6 @@ public class MyGame {
         return "There's nothing there";
     }
     public static void main(String[] args) {
-        Scanner use = new Scanner(System.in);
-        System.out.println("N: Enter your name: ");
-        String name = use.nextLine();
-        use.close();
         Random rand= new Random();
         Character[][] platform = new Character[25][25];
         Wall[][] map = new Wall[25][25];
@@ -120,6 +116,10 @@ public class MyGame {
                 placeY = rand.nextInt(23)+1;
             }
         }
+        Scanner use = new Scanner(System.in);
+        System.out.println("N: Enter your name: ");
+        String name = use.nextLine();
+        use.close();
         Player user = new Player(20, name, "Forward", placeX, placeY, 1);
         for(int i = 0; i < 3; i++) {
             xPlace = rand.nextInt(23)+1;
@@ -168,19 +168,6 @@ public class MyGame {
         slmp(500);
         System.out.print("[" + user.getName().charAt(0) + "]: ");
         slowWrite("No matter... guess I'll look for the exit..");
-        while(user.getX() != 0 && user.getY() != 12 || user.getX() != 12 && user.getY() != 0 || user.getX() != 24 && user.getY() != 12 || user.getX() != 12 && user.getY() != 24) {
-            use = new Scanner(System.in);
-            System.out.println("[N]: Select an option: \n1: Move\n2: Peek\n3: Open Inventory\n4: Open Map");
-            int option = use.nextInt();
-            use.close();
-            while(option > 4 || option < 0) {
-                System.out.println("[N]: That isn't a valid option, try again");
-                use = new Scanner(System.in);
-                System.out.println("[N]: Select an option: \n1: Move\n2: Peek\n3: Open Inventory\n4: Open Map");
-                option = use.nextInt();
-                use.close();
-            }
-        }
     }
 }
 // Far Away For You
