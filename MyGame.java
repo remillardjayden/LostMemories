@@ -16,6 +16,20 @@ public class MyGame {
             ex.printStackTrace();
         }
     }
+    public static void slowWrite(String txt) {
+        for(int i = 0; i < txt.length(); i++) {
+            System.out.print(txt.charAt(i));
+            slmp(75);
+        }
+        System.out.println();
+    }
+    public static void quickWrite(String txt) {
+        for(int i = 0; i < txt.length(); i++) {
+            System.out.print(txt.charAt(i));
+            slmp(20);
+        }
+        System.out.println();
+    }
     public static void openMap(Wall[][] map, Player user, Character[][] platform) {
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
@@ -148,6 +162,10 @@ public class MyGame {
             }
         }
         user.pickUp(Item.allItems.get(0));
+        openMap(map, user, platform);
+        slowWrite("WE NEED TO RUN!");
+        quickWrite("WE NEED TO RUN!");
+        // Start of story
     }
 }
 // Far Away For You
