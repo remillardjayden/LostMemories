@@ -35,9 +35,9 @@ public class MyGame {
             for(int c = 0; c < 25; c++) {
                 if(map[r][c] == null) {
                     if(platform[r][c] != user) {
-                        System.out.print("     ");
+                        System.out.print("____ ");
                     } else {
-                        System.out.print(user + " ");
+                        System.out.print("USER ");
                     }
                 } else if(map[r][c] != null){
                     System.out.print(map[r][c] + " ");
@@ -163,9 +163,9 @@ public class MyGame {
         }
         user.pickUp(Item.allItems.get(0));
         openMap(map, user, platform);
-        slowWrite("WE NEED TO RUN!");
-        quickWrite("WE NEED TO RUN!");
         // Start of story
+        System.out.print("[" + user.getName().charAt(0) + "]: ");
+        slowWrite("Man this is such a weird maze.. how long have I been walking?");
     }
 }
 // Far Away For You
