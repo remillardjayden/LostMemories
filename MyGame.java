@@ -99,7 +99,7 @@ public class MyGame {
                 placeY = rand.nextInt(23)+1;
             }
         }
-        Player user = new Player(20, name, "Forward", placeX, placeY);
+        Player user = new Player(20, name, "Forward", placeX, placeY, 1);
         for(int i = 0; i < 3; i++) {
             xPlace = rand.nextInt(23)+1;
             yPlace = rand.nextInt(23)+1;
@@ -129,10 +129,10 @@ public class MyGame {
         new Memory(11, "Outrun.", "D: Do you think you can escape?! Get back here you little brat!");
         new Memory(12, "Upbringing.", "M: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
         // Items
-        new Item("Stick", "It's sticky");
+        new Item("Stick", "It's sticky", 3);
         // Enemies
-        new Enemy("Bat", 50, "Left", "He's Booberry");
-        new Enemy("Bat", 50, "Right", "He's Count Dracula");
+        new Enemy("Bat", 50, "Left", "He's Booberry", 5);
+        new Enemy("Bat", 50, "Right", "He's Count Dracula", 5);
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
@@ -141,8 +141,9 @@ public class MyGame {
             }
         }
         user.pickUp(Item.allItems.get(0));
-        openMap(map, user, platform);
+        System.out.println(user.move(1, platform, map));
+        user.goBack();
     }
 }
 // Far Away For You
-// [Peek], [Move (Left, Right, Forward [L, R, F])], Inspect, Open Map, Return, Inventory System
+// Peek, [Move (Left, Right, Forward [L, R, F])], Inspect, Open Map, Return, Inventory System

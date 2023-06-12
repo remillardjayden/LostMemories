@@ -25,4 +25,5 @@ public abstract class Character {
     public boolean isDead() { return isDead; }
     public String returnDirection() { return direction; }
     public String toString() { return name; }
+    public abstract int getDmg();
 }

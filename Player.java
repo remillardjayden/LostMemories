@@ -4,7 +4,8 @@ public class Player extends Character {
     private Item[] inventory;
     private int steps;
     private int x, y, prevX, prevY;
-    public Player(int totalHP, String name, String dir, int x, int y) {
+    private int dmg;
+    public Player(int totalHP, String name, String dir, int x, int y, int damage) {
         super(name, totalHP, dir);
         memoryCount = 0;
         recentMemory = null;
@@ -14,6 +15,7 @@ public class Player extends Character {
         this.y = y;
         prevX = x;
         prevY = y;
+        dmg = damage;
     }
     public void addMemory(Memory m) {
         recentMemory = m;
@@ -25,6 +27,24 @@ public class Player extends Character {
     public int getY() { return y; }
     public int getPrevX() { return prevX; }
     public int getPrevY() { return prevY; }
+    public String move(int direction, Character[][] platform, Wall[][] map) {
+        if(direction == 1) {
+            if(map[y][x-1] == null && platform[y][x-1] == null) {
+                x--;
+                return "You moved left";
+            } else if(map[y][x-1] != null) {
+                return "You can't go there, that's a wall.";
+            } else {
+                return "It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!";
+            }
+        } else if(direction == 2) {
+            x++;
+            return "You moved right";
+        } else {
+            y--;
+            return "You moved forward";
+        }
+    }
     public void setX(int newX) {
         prevX = x;
         x = newX;
@@ -89,4 +109,5 @@ public class Player extends Character {
         y = prevY;
         return "You returned to your previous location";
     }
+    public int getDmg() { return dmg; }
 }
