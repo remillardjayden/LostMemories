@@ -13,6 +13,7 @@ public abstract class Character {
     }
     public String getName() { return name; }
     public String getHP() { return currentHP + "/" + totalHP; }
+    public int getHealth() { return currentHP; }
     public void fullHeal() { currentHP = totalHP; }
     public void heal(int heal) {
         if(currentHP + heal > totalHP) { fullHeal(); } 
@@ -26,4 +27,5 @@ public abstract class Character {
     public String returnDirection() { return direction; }
     public String toString() { return name; }
     public abstract int getDmg();
+    public abstract void setKnowledge(boolean knows);
 }

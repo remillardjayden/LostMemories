@@ -37,6 +37,11 @@ public class MyGame {
         }
         System.out.println();
     }
+    public static void playerText(Player user, String txt) {
+        System.out.print("[" + user.getName().charAt(0) + "]: ");
+        slowWrite(txt);
+        slmp(500);
+    }
     public static void openMap(Wall[][] map, Player user, Character[][] platform) {
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
@@ -60,6 +65,7 @@ public class MyGame {
                     return "There's a wall";
                 }
             } else if(platform[user.getY()][user.getX()-1] != null) {
+                platform[user.getY()][user.getX()-1].setKnowledge(true);
                 return "There's an enemy there";
             }
         } else if(direction == 1) {
@@ -68,6 +74,7 @@ public class MyGame {
                     return "There's a wall";
                 }
             } else if(platform[user.getY()-1][user.getX()] != null) {
+                platform[user.getY()-1][user.getX()].setKnowledge(true);
                 return "There's an enemy there";
             }
         } else {
@@ -76,6 +83,7 @@ public class MyGame {
                     return "There's a wall";
                 }
             } else if(platform[user.getY()][user.getX()+1] != null) {
+                platform[user.getY()][user.getX()+1].setKnowledge(true);
                 return "There's an enemy there";
             }
         }
@@ -126,7 +134,6 @@ public class MyGame {
         Scanner use = new Scanner(System.in);
         System.out.println("N: Enter your name: ");
         String name = use.nextLine();
-        use.close();
         Player user = new Player(20, name, "Forward", placeX, placeY, 1);
         for(int i = 0; i < 3; i++) {
             xPlace = rand.nextInt(23)+1;
@@ -170,12 +177,20 @@ public class MyGame {
         }
         user.pickUp(Item.allItems.get(0));
         // Start of story
-        System.out.print("[" + user.getName().charAt(0) + "]: ");
-        slowWrite("Man this is such a weird maze.. how long have I been walking?");
-        slmp(500);
-        System.out.print("[" + user.getName().charAt(0) + "]: ");
-        slowWrite("No matter... guess I'll look for the exit..");
-        slmp(500);
+        playerText(user, "Man this is such a weird maze.. how long have I been walking?");
+        playerText(user, "No matter... guess I'll look for the exit..");
+        boolean exit = false;
+        while(user.getHealth() > 0 && !exit) {
+            System.out.println("What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
+            int option = use.nextInt();
+            while(option < 1 || option > 4) {
+                System.out.println("Sorry, that isn't valid, try again.");
+                slmp(500);
+                System.out.println("What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
+                option = use.nextInt();
+            }
+        }
+        use.close();
     }
 }
 // Far Away For You

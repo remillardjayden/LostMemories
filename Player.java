@@ -125,4 +125,5 @@ public class Player extends Character {
         return "You returned to your previous location";
     }
     public int getDmg() { return dmg; }
+    public void setKnowledge(boolean knows) {}
 }
