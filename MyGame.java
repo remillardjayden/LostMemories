@@ -167,16 +167,16 @@ public class MyGame {
         new Item("Stick", "It's sticky", 1, Memory.allMemories.get(0));
         new Item("Bloody Rock", "It's a bloody rock, mate. Leave it be.", 2, Memory.allMemories.get(1));
         new Item("Rope", "It seems used", 4, Memory.allMemories.get(2));
-        new Item("Broken Toy", "Destroyed beyond repair", 0, Memory.allMemories.get(3));
-        new Item("Walkie Talkie", "No more batteries, no more voices", 0, Memory.allMemories.get(4));
-        new Item("Shattered Mirror", "You look destroyed within", 0, Memory.allMemories.get(5));
+        new Item("Broken Toy", "Destroyed beyond repair", 8, Memory.allMemories.get(3));
+        new Item("Walkie Talkie", "No more batteries, no more voices", 16, Memory.allMemories.get(4));
+        new Item("Shattered Mirror", "You look destroyed within", 32, Memory.allMemories.get(5));
         new Item("Dead Dove", "Life wasted, peace gone.", 0, Memory.allMemories.get(6));
-        new Item("", "", 0, Memory.allMemories.get(7));
+        new Item("Skeleton Skull", "Bits of flesh remain", 64, Memory.allMemories.get(7));
         new Item("Red Shirt", "It seems like blood..", 0, Memory.allMemories.get(8));
-        new Item("", "", 0, Memory.allMemories.get(9));
-        new Item("", "", 0, Memory.allMemories.get(10));
-        new Item("", "", 0, Memory.allMemories.get(11));
-        new Item("", "", 0, Memory.allMemories.get(12));
+        new Item("Gas Lamp", "It's entirely used up, someone must've been scared", 128, Memory.allMemories.get(9));
+        new Item("Wilting Lilac", "It's almost died, must've been stepped on", 0, Memory.allMemories.get(10));
+        new Item("Flaming Track Shoes", "", 256, Memory.allMemories.get(11));
+        new Item("Bottle", "Contents decay the mind", 0, Memory.allMemories.get(12));
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry", 5);
         new Enemy("Bat", 50, "Right", "He's Count Dracula", 5);
@@ -273,3 +273,4 @@ public class MyGame {
 }
 // Far Away For You
 // Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return, Inventory System
+// Ending: Relive memories, fill in gaps, end with a *thud* and then silence
