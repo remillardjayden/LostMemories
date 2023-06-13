@@ -16,6 +16,13 @@ public class MyGame {
             ex.printStackTrace();
         }
     }
+    public static void superSlowWrite(String txt) {
+        for(int i = 0; i < txt.length(); i++) {
+            System.out.print(txt.charAt(i));
+            slmp(160);
+        }
+        System.out.println();
+    }
     public static void slowWrite(String txt) {
         for(int i = 0; i < txt.length(); i++) {
             System.out.print(txt.charAt(i));
@@ -168,6 +175,7 @@ public class MyGame {
         slmp(500);
         System.out.print("[" + user.getName().charAt(0) + "]: ");
         slowWrite("No matter... guess I'll look for the exit..");
+        slmp(500);
     }
 }
 // Far Away For You
