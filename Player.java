@@ -149,10 +149,13 @@ public class Player extends Character {
         return "Name: " + item.getName() + "\nDescription: " + item.getDesc();
     }
     public String goBack() {
-        steps--;
-        x = prevX;
-        y = prevY;
-        return "You returned to your previous location";
+        if(steps != 0) {
+            steps--;
+            x = prevX;
+            y = prevY;
+            return "You returned to your previous location";
+        }
+        return "You haven't moved. Like at all.";
     }
     public int getDmg() { return dmg; }
     public void setKnowledge(boolean knows) {}
