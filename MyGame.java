@@ -42,16 +42,20 @@ public class MyGame {
         slowWrite(txt);
         slmp(500);
     }
-    public static void openMap(Wall[][] map, Player user, Character[][] platform) {
+    public static void openMap(Wall[][] map, Player user, Character[][] platform, Item[][] items) {
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(map[r][c] == null) {
-                    if(platform[r][c] != user) {
-                        System.out.print("____ ");
-                    } else {
+                    if(platform[r][c] == null) {
+                        if(items[r][c] == null) {
+                            System.out.print("____ ");
+                        } else {
+                            System.out.println(" ??? ");
+                        }
+                    } else if(platform[r][c] == user) {
                         System.out.print("USER ");
                     }
-                } else if(map[r][c] != null){
+                } else {
                     System.out.print(map[r][c] + " ");
                 }
             }
@@ -113,6 +117,7 @@ public class MyGame {
         Random rand= new Random();
         Character[][] platform = new Character[25][25];
         Wall[][] map = new Wall[25][25];
+        Item[][] items = new Item[25][25];
         int xPlace = 0;
         int yPlace = 0;
         int orientation;
@@ -145,11 +150,9 @@ public class MyGame {
         }
         int placeX = rand.nextInt(23)+1;
         int placeY = rand.nextInt(23)+1;
-        if(map[placeY][placeX] != null) {
-            while(map[placeY][placeX] != null) {
-                placeX = rand.nextInt(23)+1;
-                placeY = rand.nextInt(23)+1;
-            }
+        while(map[placeY][placeX] != null) {
+            placeX = rand.nextInt(23)+1;
+            placeY = rand.nextInt(23)+1;
         }
         Scanner use = new Scanner(System.in);
         System.out.println("N: Enter your name: ");
@@ -244,7 +247,7 @@ public class MyGame {
             } else if(option == 3) {
                 System.out.println("[N]: You open your map. . .");
                 slmp(500);
-                openMap(map, user, platform);
+                openMap(map, user, platform, items);
             } else {
                 System.out.println("[N]: You open your inventory. . .");
                 slmp(500);
