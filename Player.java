@@ -30,33 +30,63 @@ public class Player extends Character {
     public String move(int direction, Character[][] platform, Wall[][] map) {
         if(direction == 1) {
             if(map[y][x-1] == null && platform[y][x-1] == null) {
+                steps++;
                 x--;
-                return "You moved left";
+                return "[N]: You moved left";
             } else if(map[y][x-1] != null) {
-                return "You can't go there, that's a wall.";
+                if(map[y][x-1].toString() == "EXIT") {
+                    steps++;
+                    return "[N]: You enter the next room";
+                } else if(!map[y][x-1].getKnowledge()) {
+                    super.damage(1);
+                    return "[N]: You can't go there, that's a wall.";
+                } else {
+                    super.damage(5);
+                    return "[N]: Are you serious. You knew the wall was there.";
+                }
             } else {
                 super.damage(platform[y][x-1].getDmg());
-                return "It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!";
+                return "[N]: It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!";
             }
         } else if(direction == 2) {
             if(map[y][x+1] == null && platform[y][x+1] == null) {
                 x++;
-                return "You moved right";
+                steps++;
+                return "[N]: You moved right";
             } else if(map[y][x+1] != null) {
-                return "You can't go there, that's a wall.";
+                if(map[y][x+1].toString() == "EXIT") {
+                    steps++;
+                    return "[N]: You enter the next room";
+                } else if(!map[y][x+1].getKnowledge()) {
+                    super.damage(1);
+                    return "[N]: You can't go there, that's a wall.";
+                } else {
+                    super.damage(5);
+                    return "[N]: Are you serious. You knew the wall was there.";
+                }
             } else {
                 super.damage(platform[y][x+1].getDmg());
-                return "It's a " + platform[y][x+1].getName() + "! You take " + platform[y][x+1].getDmg() + " damage!";
+                return "[N]: It's a " + platform[y][x+1].getName() + "! You take " + platform[y][x+1].getDmg() + " damage!";
             }
         } else {
             if(map[y-1][x] == null && platform[y-1][x] == null) {
                 y--;
-                return "You moved forward";
+                steps++;
+                return "[N]: You moved forward";
             } else if(map[y-1][x] != null) {
-                return "You can't go there, that's a wall.";
+                if(map[y-1][x].toString() == "EXIT") {
+                    steps++;
+                    return "[N]: You enter the next room";
+                } else if(!map[y-1][x].getKnowledge()) {
+                    super.damage(1);
+                    return "[N]: You can't go there, that's a wall.";
+                } else {
+                    super.damage(5);
+                    return "[N]: Are you serious. You knew the wall was there.";
+                }
             } else {
                 super.damage(platform[y-1][x].getDmg());
-                return "It's a " + platform[y-1][x].getName() + "! You take " + platform[y-1][x].getDmg() + " damage!";
+                return "[N]: It's a " + platform[y-1][x].getName() + "! You take " + platform[y-1][x].getDmg() + " damage!";
             }
         }
     }

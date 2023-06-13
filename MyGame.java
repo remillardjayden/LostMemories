@@ -165,6 +165,18 @@ public class MyGame {
         new Memory(12, "Upbringing.", "[M]: I can't believe you would do that to them! They're just a kid! You stupid a-\n*BANG* ... *thud*");
         // Items
         new Item("Stick", "It's sticky", 3);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
+        new Item("", "", 0);
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry", 5);
         new Enemy("Bat", 50, "Right", "He's Count Dracula", 5);
@@ -188,6 +200,9 @@ public class MyGame {
                 slmp(500);
                 System.out.println("What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
                 option = use.nextInt();
+            }
+            if(option == 1) {
+                System.out.println("Which direction would you like to move?\n1: Left\n2: Right\n3: Forward");
             }
         }
         use.close();
