@@ -58,36 +58,56 @@ public class MyGame {
             System.out.println("\n");
         }
     }
-    public static String peek(int direction, Character[][] platform, Wall[][] map, Player user) {
+    public static void peek(int direction, Character[][] platform, Wall[][] map, Player user) {
         if(direction == 1) {
             if(platform[user.getY()][user.getX()-1] == null) {
                 if(map[user.getY()][user.getX()-1] != null) {
-                    return "There's a wall";
+                    System.out.println("There's a wall");
+                    map[user.getY()][user.getX()-1].setKnowledge(true);
                 }
             } else if(platform[user.getY()][user.getX()-1] != null) {
                 platform[user.getY()][user.getX()-1].setKnowledge(true);
-                return "There's an enemy there";
+                System.out.println("There's an enemy there");
+            } else {
+                System.out.println("There's nothing obstructing you");
             }
-        } else if(direction == 1) {
-            if(platform[user.getY()-1][user.getX()] == null) {
-                if(map[user.getY()-1][user.getX()] != null) {
-                    return "There's a wall";
-                }
-            } else if(platform[user.getY()-1][user.getX()] != null) {
-                platform[user.getY()-1][user.getX()].setKnowledge(true);
-                return "There's an enemy there";
-            }
-        } else {
+        } else if(direction == 2){
             if(platform[user.getY()][user.getX()+1] == null) {
                 if(map[user.getY()][user.getX()+1] != null) {
-                    return "There's a wall";
+                    map[user.getY()][user.getX()+1].setKnowledge(true);
+                    System.out.println("There's a wall");
                 }
             } else if(platform[user.getY()][user.getX()+1] != null) {
                 platform[user.getY()][user.getX()+1].setKnowledge(true);
-                return "There's an enemy there";
+                System.out.println("There's an enemy there");
+            } else {
+                System.out.println("There's nothing obstructing you");
+            }
+        } else if(direction == 3) {
+            if(platform[user.getY()-1][user.getX()] == null) {
+                if(map[user.getY()-1][user.getX()] != null) {
+                    System.out.println("There's a wall");
+                    map[user.getY()-1][user.getX()].setKnowledge(true);
+                }
+            } else if(platform[user.getY()-1][user.getX()] != null) {
+                platform[user.getY()-1][user.getX()].setKnowledge(true);
+                System.out.println("There's an enemy there");
+            } else {
+                System.out.println("There's nothing obstructing you");
+            }
+        } else if(direction == 4) {
+            if(platform[user.getY()+1][user.getX()] == null) {
+                if(map[user.getY()+1][user.getX()] != null) {
+                    System.out.println("There's a wall");
+                    map[user.getY()+1][user.getX()].setKnowledge(true);
+                }
+            } else if(platform[user.getY()+1][user.getX()] != null) {
+                platform[user.getY()+1][user.getX()].setKnowledge(true);
+                System.out.println("There's an enemy there");
+            } else {
+                System.out.println("There's nothing obstructing you");
             }
         }
-        return "There's nothing there";
     }
     public static void main(String[] args) {
         Random rand= new Random();
@@ -152,13 +172,13 @@ public class MyGame {
         // Memories
         new Memory(0, "Fall.", "[$#!@^*]: Falling falling, down you go. When you do land, no one will know. . .");
         new Memory(1, "Away.", name + "[?]: Where are you taking me? Someone help! Please! Anyone!");
-        new Memory(2, "Run.", "[R]: After him! Don't let him escape.\n[L]: We've got you now, kid! You're not getting away this time.");
+        new Memory(2, "Run.", "[R]: After them! Don't let them escape.\n[L]: We've got you now, kid! You're not getting away this time.");
         new Memory(3, "Accountable.", "[R]: It was you... wasn't it? You're the one that-");
-        new Memory(4, "Whispers.", "[R + L]: Maybe we should talk to him, he seems a little... off.");
+        new Memory(4, "Whispers.", "[R + L]: Maybe we should talk to them, they seem a little... off.");
         new Memory(5, "Altered.", "[" + name.substring(0,1) + "]: Oh god... God no I'm a horrible person. I just...");
         new Memory(6, "Youth.", "[" + name.substring(0,1) + "]: What can I do? I guess I should find a place to stay...");
         new Memory(7, "Finale.", "*drip*...*drip*...*drip*\n[D]: *wheeze*..I guess this is how I go...Goodbye..*thud*\n[" + name.substring(0,1) + "]: What have I done..?");
-        new Memory(8, "Overcome.", "[D]: There you are, buddy. I knew you'd come around at some- *STAB* ...oh..");
+        new Memory(8, "Overcome.", "[D]: There you are, kid. I knew you'd come around at some- *STAB* ...oh..");
         new Memory(9, "Retreat.", "[D]: I know you're here! I can hear you! Come on out, I don't bite! I'm just a little drunk, I'm sorry."); 
         new Memory(10, "Yourself.",  "[" + name.substring(0,1) + "]: Where do I go? I can't go back, I guess I'll just sleep here..");
         new Memory(11, "Outrun.", "[D]: Do you think you can escape?! Get back here you little brat!");
@@ -175,7 +195,7 @@ public class MyGame {
         new Item("Red Shirt", "It seems like blood..", 0, Memory.allMemories.get(8));
         new Item("Gas Lamp", "It's entirely used up, someone must've been scared", 128, Memory.allMemories.get(9));
         new Item("Wilting Lilac", "It's almost died, must've been stepped on", 0, Memory.allMemories.get(10));
-        new Item("Flaming Track Shoes", "", 256, Memory.allMemories.get(11));
+        new Item("Flaming Track Shoes", "Someone was going a bit too quick", 256, Memory.allMemories.get(11));
         new Item("Bottle", "Contents decay the mind", 0, Memory.allMemories.get(12));
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry", 5);
@@ -265,6 +285,33 @@ public class MyGame {
                         option = use.nextInt();
                     }
                     user.inspect(user.getInventory()[option]);
+                } else if(option == 2) {
+                    System.out.println("[N]: Which item would you like to drop?");
+                    slmp(500);
+                    int count = 0;
+                    for(int i = 0; i < user.getInventory().length; i++) {
+                        if(user.getInventory()[i] != null) {
+                            System.out.println(i + ": " + user.getInventory()[i].getName());
+                            slmp(250);
+                            count++;
+                        }
+                    }
+                    option = use.nextInt();
+                    while(option < 0 || option > count) {
+                        System.out.println("[N]: Sorry, that isn't valid, try again.");
+                        System.out.println("[N]: Which item would you like to drop?");
+                        slmp(500);
+                        count = 0;
+                        for(int i = 0; i < user.getInventory().length; i++) {
+                            if(user.getInventory()[i] != null) {
+                                System.out.println(i + ": " + user.getInventory()[i].getName());
+                                slmp(250);
+                                count++;
+                            }
+                        }
+                        option = use.nextInt();
+                    }
+                    user.dropItem(option);
                 }
             }
         }

@@ -9,7 +9,7 @@ public class Player extends Character {
         super(name, totalHP, dir);
         memoryCount = 0;
         recentMemory = null;
-        inventory = new Item[9];
+        inventory = new Item[13];
         steps = 0;
         this.x = x;
         this.y = y;
@@ -27,68 +27,91 @@ public class Player extends Character {
     public int getY() { return y; }
     public int getPrevX() { return prevX; }
     public int getPrevY() { return prevY; }
-    public String move(int direction, Character[][] platform, Wall[][] map) {
+    public Character[][] move(int direction, Character[][] platform, Wall[][] map) {
+        platform[y][x] = null;
         if(direction == 1) {
             if(map[y][x-1] == null && platform[y][x-1] == null) {
                 steps++;
                 x--;
-                return "[N]: You moved left";
+                System.out.println("[N]: You moved left");
             } else if(map[y][x-1] != null) {
                 if(map[y][x-1].toString() == "EXIT") {
                     steps++;
-                    return "[N]: You enter the next room";
+                    System.out.println("[N]: You enter the next room");
                 } else if(!map[y][x-1].getKnowledge()) {
                     super.damage(1);
-                    return "[N]: You can't go there, that's a wall.";
+                    System.out.println("[N]: You can't go there, that's a wall.");
                 } else {
                     super.damage(5);
-                    return "[N]: Are you serious. You knew the wall was there.";
+                    System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
             } else {
                 super.damage(platform[y][x-1].getDmg());
-                return "[N]: It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!";
+                System.out.println("[N]: It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!");
             }
         } else if(direction == 2) {
             if(map[y][x+1] == null && platform[y][x+1] == null) {
                 x++;
                 steps++;
-                return "[N]: You moved right";
+                System.out.println("[N]: You moved right");
             } else if(map[y][x+1] != null) {
                 if(map[y][x+1].toString() == "EXIT") {
                     steps++;
-                    return "[N]: You enter the next room";
+                    System.out.println("[N]: You enter the next room");
                 } else if(!map[y][x+1].getKnowledge()) {
                     super.damage(1);
-                    return "[N]: You can't go there, that's a wall.";
+                    System.out.println("[N]: You can't go there, that's a wall.");
                 } else {
                     super.damage(5);
-                    return "[N]: Are you serious. You knew the wall was there.";
+                    System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
             } else {
                 super.damage(platform[y][x+1].getDmg());
-                return "[N]: It's a " + platform[y][x+1].getName() + "! You take " + platform[y][x+1].getDmg() + " damage!";
+                System.out.println("[N]: It's a " + platform[y][x+1].getName() + "! You take " + platform[y][x+1].getDmg() + " damage!");
             }
-        } else {
+        } else if(direction == 3) {
             if(map[y-1][x] == null && platform[y-1][x] == null) {
                 y--;
                 steps++;
-                return "[N]: You moved forward";
+                System.out.println("[N]: You moved forward");
             } else if(map[y-1][x] != null) {
                 if(map[y-1][x].toString() == "EXIT") {
                     steps++;
-                    return "[N]: You enter the next room";
+                    System.out.println("[N]: You enter the next room");
                 } else if(!map[y-1][x].getKnowledge()) {
                     super.damage(1);
-                    return "[N]: You can't go there, that's a wall.";
+                    System.out.println("[N]: You can't go there, that's a wall.");
                 } else {
                     super.damage(5);
-                    return "[N]: Are you serious. You knew the wall was there.";
+                    System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
             } else {
                 super.damage(platform[y-1][x].getDmg());
-                return "[N]: It's a " + platform[y-1][x].getName() + "! You take " + platform[y-1][x].getDmg() + " damage!";
+                System.out.println("[N]: It's a " + platform[y-1][x].getName() + "! You take " + platform[y-1][x].getDmg() + " damage!");
+            }
+        } else {
+            if(map[y+1][x] == null && platform[y+1][x] == null) {
+                y++;
+                steps++;
+                System.out.println("[N]: You moved backward");
+            } else if(map[y+1][x] != null) {
+                if(map[y+1][x].toString() == "EXIT") {
+                    steps++;
+                    System.out.println("[N]: You enter the next room");
+                } else if(!map[y+1][x].getKnowledge()) {
+                    super.damage(1);
+                    System.out.println("[N]: You can't go there, that's a wall.");
+                } else {
+                    super.damage(5);
+                    System.out.println("[N]: Are you serious. You knew the wall was there.");
+                }
+            } else {
+                super.damage(platform[y+1][x].getDmg());
+                System.out.println("[N]: It's a " + platform[y+1][x].getName() + "! You take " + platform[y+1][x].getDmg() + " damage!");
             }
         }
+        platform[y][x] = this;
+        return platform;
     }
     public void setX(int newX) {
         prevX = x;
@@ -109,6 +132,7 @@ public class Player extends Character {
     }
     public void dropItem(int index) {
         inventory[index] = null;
+        fixInv();
     }
     public void fixInv() {
         Item temp;
