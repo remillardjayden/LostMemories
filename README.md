@@ -1,2 +1,2 @@
 # LostMemories
-A boy without memories, destined to retrieve his lost self
+A human without memories, destined to retrieve their lost self
