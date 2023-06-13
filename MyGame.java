@@ -193,16 +193,79 @@ public class MyGame {
         playerText(user, "No matter... guess I'll look for the exit..");
         boolean exit = false;
         while(user.getHealth() > 0 && !exit) {
-            System.out.println("What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
+            System.out.println("[N]: What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
             int option = use.nextInt();
             while(option < 1 || option > 4) {
-                System.out.println("Sorry, that isn't valid, try again.");
+                System.out.println("[N]: Sorry, that isn't valid, try again.");
                 slmp(500);
-                System.out.println("What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
+                System.out.println("[N]: What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
                 option = use.nextInt();
             }
             if(option == 1) {
-                System.out.println("Which direction would you like to move?\n1: Left\n2: Right\n3: Forward");
+                System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward");
+                int move = use.nextInt();
+                while(move < 1 || move > 3) {
+                    System.out.println("[N]: Sorry, that isn't valid, try again.");
+                    slmp(500);
+                    System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward");
+                    move = use.nextInt();
+                }
+                user.move(move, platform, map);
+            } else if(option == 2) {
+                System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward");
+                int peek = use.nextInt();
+                while(peek < 1 || peek > 3) {
+                    System.out.println("[N]: Sorry, that isn't valid, try again.");
+                    slmp(500);
+                    System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward");
+                    peek = use.nextInt();
+                }
+                peek(peek, platform, map, user);
+            } else if(option == 3) {
+                System.out.println("[N]: You open your map. . .");
+                slmp(500);
+                openMap(map, user, platform);
+            } else {
+                System.out.println("[N]: You open your inventory. . .");
+                slmp(500);
+                user.getInv();
+                slmp(500);
+                System.out.println("[N]: What would you like to do?\n1: Inspect an item\n2: Drop an item\n3: Return to original menu");
+                option = use.nextInt();
+                while(option < 1 || option > 3) {
+                    System.out.println("[N]: Sorry, that isn't valid, try again.");
+                    slmp(500);
+                    System.out.println("[N]: What would you like to do?\n1: Inspect an item\n2: Drop an item\n3: Return to original menu");
+                    option = use.nextInt();
+                }
+                if(option == 1) {
+                    System.out.println("[N]: Which item would you like to inspect?");
+                    slmp(500);
+                    int count = 0;
+                    for(int i = 0; i < user.getInventory().length; i++) {
+                        if(user.getInventory()[i] != null) {
+                            System.out.println(i + ": " + user.getInventory()[i].getName());
+                            slmp(250);
+                            count++;
+                        }
+                    }
+                    option = use.nextInt();
+                    while(option < 0 || option > count) {
+                        System.out.println("[N]: Sorry, that isn't valid, try again.");
+                        System.out.println("[N]: Which item would you like to inspect?");
+                        slmp(500);
+                        count = 0;
+                        for(int i = 0; i < user.getInventory().length; i++) {
+                            if(user.getInventory()[i] != null) {
+                                System.out.println(i + ": " + user.getInventory()[i].getName());
+                                slmp(250);
+                                count++;
+                            }
+                        }
+                        option = use.nextInt();
+                    }
+                    user.inspect(user.getInventory()[option]);
+                }
             }
         }
         use.close();
