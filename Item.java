@@ -17,5 +17,5 @@ public class Item {
     public String getDesc() { return description; }
     public int getDmg() { return dmg; }
     public Memory getLinkedMemory() { return linkedMemory; }
-    public ArrayList<Item> getItems() { return allItems; }
+    public String toString() { return "ITEM"; }
 }
