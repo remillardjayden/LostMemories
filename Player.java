@@ -35,7 +35,7 @@ public class Player extends Character {
                 x--;
                 System.out.println("[N]: You moved left");
             } else if(map[y][x-1] != null) {
-                if(map[y][x-1].toString() == "EXIT" || map[y][x-1].toString() == "DOOR") {
+                if(map[y][x-1].getValue() == "exit" || map[y][x-1].getValue() == "door") {
                     steps++;
 					x--;
                     System.out.println("[N]: You enter the next room");
@@ -56,7 +56,7 @@ public class Player extends Character {
                 steps++;
                 System.out.println("[N]: You moved right");
             } else if(map[y][x+1] != null) {
-                if(map[y][x+1].toString() == "EXIT") {
+                if(map[y][x+1].getValue() == "exit" || map[y][x=1].getValue() == "door") {
 					x++;
                     steps++;
                     System.out.println("[N]: You enter the next room");
@@ -75,9 +75,9 @@ public class Player extends Character {
             if(map[y-1][x] == null && platform[y-1][x] == null) {
                 y--;
                 steps++;
-                System.out.println("[N]: You moved forward");
+                System.out.println("[N]: You moved up");
             } else if(map[y-1][x] != null) {
-                if(map[y-1][x].toString() == "EXIT") {
+                if(map[y-1][x].getValue() == "exit" || map[y-1][x].getValue() == "door") {
 					y--;
                     steps++;
                     System.out.println("[N]: You enter the next room");
@@ -96,9 +96,9 @@ public class Player extends Character {
             if(map[y+1][x] == null && platform[y+1][x] == null) {
                 y++;
                 steps++;
-                System.out.println("[N]: You moved backward");
+                System.out.println("[N]: You moved down");
             } else if(map[y+1][x] != null) {
-                if(map[y+1][x].toString() == "EXIT") {
+                if(map[y+1][x].getValue() == "exit" || map[y+1][x].getValue() == "door") {
 					y++;
                     steps++;
                     System.out.println("[N]: You enter the next room");

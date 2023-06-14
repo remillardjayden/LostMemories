@@ -11,10 +11,11 @@ public class Wall {
         value = val;
         playerKnows = false;
     }
-    public int returnX() { return wallX; }
-    public int returnY() { return wallY; }
-    public String returnOrientation() { return orientation; }
+    public int getX() { return wallX; }
+    public int getY() { return wallY; }
+    public String getOrientation() { return orientation; }
     public boolean getKnowledge() { return playerKnows; }
     public void setKnowledge(boolean knows) { playerKnows = knows; }
+    public String getValue() { return value; }
     public String toString() { return value.toUpperCase(); }
 }

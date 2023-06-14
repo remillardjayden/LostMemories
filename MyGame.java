@@ -50,7 +50,7 @@ public class MyGame {
                         if(items[r][c] == null) {
                             System.out.print("____ ");
                         } else {
-                            System.out.println(" ??? ");
+                            System.out.print("???? ");
                         }
                     } else if(platform[r][c] == user) {
                         System.out.print("USER ");
@@ -85,7 +85,7 @@ public class MyGame {
                 if(c % 3 == 0 && r % 2 == 0) {
                     xPlace = rand.nextInt(23)+1;
                     yPlace = rand.nextInt(23)+1;
-					while(xPlace == user.getX() || yPlace == user.getY()) {
+					while(xPlace == user.getX() && yPlace == user.getY()) {
 						xPlace = rand.nextInt(23)+1;
 						yPlace = rand.nextInt(23)+1;
 					}
@@ -152,6 +152,7 @@ public class MyGame {
         }
     }
     public static void main(String[] args) {
+        int counter = 1;
         Random rand= new Random();
         Character[][] platform = new Character[25][25];
         Wall[][] map = new Wall[25][25];
@@ -196,7 +197,7 @@ public class MyGame {
         System.out.println("N: Enter your name: ");
         String name = use.nextLine();
         Player user = new Player(20, name, "Forward", placeX, placeY, 1);
-        for(int i = 0; i < 3; i++) {
+        /* for(int i = 0; i < 3; i++) {
             xPlace = rand.nextInt(23)+1;
             yPlace = rand.nextInt(23)+1;
             while(map[yPlace][xPlace] != null) {
@@ -209,7 +210,7 @@ public class MyGame {
             } else {
                 map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "door");
             }
-        }
+        } */
         // Memories
         new Memory(0, "Fall.", "[$#!@^*]: Falling falling, down you go. When you do land, no one will know. . .");
         new Memory(1, "Away.", name + "[?]: Where are you taking me? Someone help! Please! Anyone!");
@@ -263,22 +264,22 @@ public class MyGame {
                 option = use.nextInt();
             }
             if(option == 1) {
-                System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward\n4: Backward");
+                System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Up\n4: Down");
                 int move = use.nextInt();
-                while(move < 1 || move > 3) {
+                while(move < 1 || move > 4) {
                     System.out.println("[N]: Sorry, that isn't valid, try again.");
                     slmp(500);
-                    System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward\n4: Backward");
+                    System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Up\n4: Down");
                     move = use.nextInt();
                 }
                 user.move(move, platform, map);
             } else if(option == 2) {
-                System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward\n4: Backward");
+                System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Up\n4: Down");
                 int peek = use.nextInt();
-                while(peek < 1 || peek > 3) {
+                while(peek < 1 || peek > 4) {
                     System.out.println("[N]: Sorry, that isn't valid, try again.");
                     slmp(500);
-                    System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward\n4: Backward");
+                    System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Up\n4: Down");
                     peek = use.nextInt();
                 }
                 peek(peek, platform, map, user);
@@ -356,16 +357,37 @@ public class MyGame {
                 }
             }
 			if(user.getX() == 0 || user.getY() == 0 || user.getX() == 24 || user.getY() == 24) {
+                counter++;
+                platform[user.getY()][user.getX()] = null;
 				if(user.getX() == 0) {
 					user.setX(23);
 				} else if(user.getY() == 0) {
 					user.setY(23);
 				} else if(user.getX() == 24) {
 					user.setX(1);
-				} else {
-					user.setY(23);
+				} else if(user.getY() == 24){
+					user.setY(1);
 				}
+                platform[user.getY()][user.getX()] = user;
 				map = newMap(rand, user);
+                if(counter == 5) {
+                    int xLocation = rand.nextInt(25);
+                    int yLocation = rand.nextInt(25);
+                    while(map[yLocation][xLocation] != null || platform[yLocation][xLocation] != null) {
+                        xLocation = rand.nextInt(25);
+                        yLocation = rand.nextInt(25);
+                    }
+                    int check = 0;
+                    for(int i = 0; i < 13; i++) {
+                        if(user.getInventory()[i] == null) {
+                            check = i;
+                            break;
+                        }
+                    }
+                    Item placed = Item.allItems.get(check);
+                    items[yLocation][xLocation] = placed;
+                    counter = 0;
+                }
 			}
         }
         use.close();
