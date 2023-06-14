@@ -448,6 +448,7 @@ public class MyGame {
                 if(user.getInventory()[i] != null) {
                     Memory current = user.getInventory()[i].getLinkedMemory();
                     Memory next = user.getInventory()[i-1].getLinkedMemory();
+                    user.inspect(user.getInventory()[i]);
                     slowWrite(current.toString());
                     slmp(500);
                     if(Memory.allMemories.indexOf(current) - 1 == Memory.allMemories.indexOf(next)) {
