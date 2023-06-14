@@ -236,7 +236,7 @@ public class MyGame {
         }
         // Memories
         new Memory(0, "Fall.", "[$#!@^*]: Falling falling, down you go. When you do land, no one will know. . .");
-        new Memory(1, "Away.", name + "[?]: Where are you taking me? Someone help! Please! Anyone!");
+        new Memory(1, "Away.", "[" + name + "?]: Where are you taking me? Someone help! Please! Anyone!");
         new Memory(2, "Run.", "[R]: After them! Don't let them escape.\n[L]: We've got you now, kid! You're not getting away this time.");
         new Memory(3, "Accountable.", "[R]: It was you... wasn't it? You're the one that-");
         new Memory(4, "Whispers.", "[R + L]: Maybe we should talk to them, they seem a little... off.");
