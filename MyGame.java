@@ -62,21 +62,24 @@ public class MyGame {
             System.out.println("\n");
         }
     }
-	public static Wall[][] newMap() {
+	public static Wall[][] newMap(Random rand, Player user) {
 		Wall[][] newMap = new Wall[25][25];
+        int orientation;
+        int xPlace = 0;
+        int yPlace = 0;
 		for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == 0 || c == 0 || r == 24 || c == 24) {
                     orientation = rand.nextInt(2) + 1;
                     if(orientation == 1) { 
-                        map[r][c] = new Wall(c, r, "Horizontal", "wall");
+                        newMap[r][c] = new Wall(c, r, "Horizontal", "wall");
                     } else {
-                        map[r][c] = new Wall(c, r, "Vertical", "wall");
+                        newMap[r][c] = new Wall(c, r, "Vertical", "wall");
                     }
                     if(c == 0 && r == 12 || c == 24 && r == 12) {
-                        map[r][c] = new Wall(c, r, "Vertical", "exit");
+                        newMap[r][c] = new Wall(c, r, "Vertical", "exit");
                     } else if (r == 0 && c == 12 || r == 24 && c == 12) {
-                        map[r][c] = new Wall(c, r, "Horizontal", "exit");
+                        newMap[r][c] = new Wall(c, r, "Horizontal", "exit");
                     }
                 }
                 if(c % 3 == 0 && r % 2 == 0) {
@@ -88,9 +91,9 @@ public class MyGame {
 					}
                     orientation = rand.nextInt(2) + 1;
                     if(orientation == 1) { 
-                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal", "wall");
+                        newMap[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal", "wall");
                     } else {
-                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "wall");
+                        newMap[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "wall");
                     }
                 }
             }
@@ -352,17 +355,17 @@ public class MyGame {
                     user.dropItem(option);
                 }
             }
-			if(x == 0 || y == 0 || x == 24 || y == 24) {
-				if(x == 0) {
-					x = 23;
-				} else if(y == 0) {
-					y = 23;
-				} else if(x == 24) {
-					x = 1;
+			if(user.getX() == 0 || user.getY() == 0 || user.getX() == 24 || user.getY() == 24) {
+				if(user.getX() == 0) {
+					user.setX(23);
+				} else if(user.getY() == 0) {
+					user.setY(23);
+				} else if(user.getX() == 24) {
+					user.setX(1);
 				} else {
-					y = 1;
+					user.setY(23);
 				}
-				map = newMap();
+				map = newMap(rand, user);
 			}
         }
         use.close();
