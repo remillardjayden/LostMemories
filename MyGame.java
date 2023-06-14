@@ -238,7 +238,7 @@ public class MyGame {
         // Memories
         new Memory(0, "Fall.", "[$#!@^*]: Falling falling, down you go. When you do land, no one will know. . .");
         new Memory(1, "Away.", "[" + name + "?]: Where are you taking me? Someone help! Please! Anyone!");
-        new Memory(2, "Run.", "[R]: After them! Don't let them escape.\n[L]: We've got you now, kid! You're not getting away this time.");
+        new Memory(2, "Run.", "[R]: After them! Don't let them escape!\n[L]: We've got you now, kid! You're not getting away this time.");
         new Memory(3, "Accountable.", "[R]: It was you... wasn't it? You're the one that-");
         new Memory(4, "Whispers.", "[R + L]: Maybe we should talk to them, they seem a little... off.");
         new Memory(5, "Altered.", "[" + name.substring(0,1) + "]: Oh god... God no I'm a horrible person. I just...");
@@ -443,6 +443,44 @@ public class MyGame {
         if(user.getHealth() <= 0) {
             superSlowWrite("[N]: Oh, such a shame. Now that you've died, you must restart, back from zero.");
             slmp(250);
+        } else if(end) {
+            for(int i = 12; i > -1; i--) {
+                if(user.getInventory()[i] != null) {
+                    Memory current = user.getInventory()[i].getLinkedMemory();
+                    Memory next = user.getInventory()[i-1].getLinkedMemory();
+                    slowWrite(current.toString());
+                    slmp(500);
+                    if(Memory.allMemories.indexOf(current) - 1 == Memory.allMemories.indexOf(next)) {
+                        if(current.getName() == "Upbringing.") {
+                            slowWrite("[D]: Come here you little brat! You aren't telling anyone what you saw!");
+                        } else if(current.getName() == "Outrun.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: Finally, I got away from him. Wait... where am I?");
+                        } else if(current.getName() == "Yourself.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: Wait, is that him? Oh no, I need to hide, now.");
+                        } else if(current.getName() == "Retreat.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: It's time to get rid of this bastard... Right here, Dad.");
+                        } else if(current.getName() == "Overcome.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: You had this coming, Dad. You killed Mom. You're a horrible person.");
+                        } else if(current.getName() == "Finale.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: I need to clean this mess up... and get rid of that body.");
+                        } else if(current.getName() == "Youth.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: I'm free now, aren't I? So why am I so upset..?");
+                        } else if(current.getName() == "Altered.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: Remember, " + user.getName() + ", keep to yourself, don't slip up, and you'll be fine.");
+                        } else if(current.getName() == "Whispers.") {
+                            slowWrite("[R]: Hey there man, you doing alright?\n[L]: Yeah man, you don't look too good...\n[R]: Wait...");
+                        } else if(current.getName() == "Accountable.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: Well, gotta run. See you guys never! Hahahaha!");
+                        } else if(current.getName() == "Run.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: Hey guys, easy on the wrists jeez... wait is that rope?");
+                        } else if(current.getName() == "Away.") {
+                            slowWrite("[" + user.getName().charAt(0) + "]: No, wait guys! I won't survive that! Don't do this! No wai- *woosh*");
+                        }
+                        slmp(500);
+                    }
+                }
+            }
+            superSlowWrite("*THUD*       \n[Player]: . . .");
         }
     }
 }
