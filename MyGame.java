@@ -98,6 +98,20 @@ public class MyGame {
                 }
             }
         }
+        for(int i = 0; i < 3; i++) {
+            xPlace = rand.nextInt(23)+1;
+            yPlace = rand.nextInt(23)+1;
+            while(newMap[yPlace][xPlace] != null) {
+                xPlace = rand.nextInt(23)+1;
+                yPlace = rand.nextInt(23)+1;
+            }
+            orientation = rand.nextInt(2) + 1;
+            if(orientation == 1) { 
+                newMap[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal", "door");
+            } else {
+                newMap[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "door");
+            }
+        }
 		return newMap;
 	}
     public static void peek(int direction, Character[][] platform, Wall[][] map, Player user, Item[][] items) {
@@ -205,7 +219,7 @@ public class MyGame {
         System.out.println("N: Enter your name: ");
         String name = use.nextLine();
         Player user = new Player(20, name, "Forward", placeX, placeY, 1);
-        /* for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < 3; i++) {
             xPlace = rand.nextInt(23)+1;
             yPlace = rand.nextInt(23)+1;
             while(map[yPlace][xPlace] != null) {
@@ -218,7 +232,7 @@ public class MyGame {
             } else {
                 map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "door");
             }
-        } */
+        }
         // Memories
         new Memory(0, "Fall.", "[$#!@^*]: Falling falling, down you go. When you do land, no one will know. . .");
         new Memory(1, "Away.", name + "[?]: Where are you taking me? Someone help! Please! Anyone!");
@@ -364,7 +378,7 @@ public class MyGame {
                     user.dropItem(option);
                 }
             }
-			if(user.getX() == 0 || user.getY() == 0 || user.getX() == 24 || user.getY() == 24) {
+			if(user.getX() == 0 || user.getY() == 0 || user.getX() == 24 || user.getY() == 24 || map[user.getY()][user.getX()] != null) {
                 counter++;
                 platform[user.getY()][user.getX()] = null;
 				if(user.getX() == 0) {
@@ -379,11 +393,11 @@ public class MyGame {
                 platform[user.getY()][user.getX()] = user;
 				map = newMap(rand, user);
                 if(counter == 5) {
-                    int xLocation = rand.nextInt(25);
-                    int yLocation = rand.nextInt(25);
+                    int xLocation = rand.nextInt(23)+1;
+                    int yLocation = rand.nextInt(23)+1;
                     while(map[yLocation][xLocation] != null || platform[yLocation][xLocation] != null) {
-                        xLocation = rand.nextInt(25);
-                        yLocation = rand.nextInt(25);
+                        xLocation = rand.nextInt(23)+1;
+                        yLocation = rand.nextInt(23)+1;
                     }
                     int check = 0;
                     for(int i = 0; i < 13; i++) {

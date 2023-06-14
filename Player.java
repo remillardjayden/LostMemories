@@ -61,7 +61,7 @@ public class Player extends Character {
                 steps++;
                 System.out.println("[N]: You moved right");
             } else if(map[y][x+1] != null) {
-                if(map[y][x+1].getValue() == "exit" || map[y][x=1].getValue() == "door") {
+                if(map[y][x+1].getValue() == "exit" || map[y][x+1].getValue() == "door") {
 					x++;
                     steps++;
                     System.out.println("[N]: You enter the next room");
