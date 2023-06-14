@@ -100,7 +100,7 @@ public class MyGame {
         }
 		return newMap;
 	}
-    public static void peek(int direction, Character[][] platform, Wall[][] map, Player user) {
+    public static void peek(int direction, Character[][] platform, Wall[][] map, Player user, Item[][] items) {
         if(direction == 1) {
             if(platform[user.getY()][user.getX()-1] == null) {
                 if(map[user.getY()][user.getX()-1] != null) {
@@ -110,6 +110,8 @@ public class MyGame {
             } else if(platform[user.getY()][user.getX()-1] != null) {
                 platform[user.getY()][user.getX()-1].setKnowledge(true);
                 System.out.println("There's an enemy there");
+            } else if(items[user.getY()][user.getX()-1] != null){
+                System.out.println("There's something there..");
             } else {
                 System.out.println("There's nothing obstructing you");
             }
@@ -122,6 +124,8 @@ public class MyGame {
             } else if(platform[user.getY()][user.getX()+1] != null) {
                 platform[user.getY()][user.getX()+1].setKnowledge(true);
                 System.out.println("There's an enemy there");
+            } else if(items[user.getY()][user.getX()+1] != null){
+                System.out.println("There's something there..");
             } else {
                 System.out.println("There's nothing obstructing you");
             }
@@ -134,6 +138,8 @@ public class MyGame {
             } else if(platform[user.getY()-1][user.getX()] != null) {
                 platform[user.getY()-1][user.getX()].setKnowledge(true);
                 System.out.println("There's an enemy there");
+            } else if(items[user.getY()-1][user.getX()] != null){
+                System.out.println("There's something there..");
             } else {
                 System.out.println("There's nothing obstructing you");
             }
@@ -146,6 +152,8 @@ public class MyGame {
             } else if(platform[user.getY()+1][user.getX()] != null) {
                 platform[user.getY()+1][user.getX()].setKnowledge(true);
                 System.out.println("There's an enemy there");
+            } else if(items[user.getY()+1][user.getX()] != null){
+                System.out.println("There's something there..");
             } else {
                 System.out.println("There's nothing obstructing you");
             }
@@ -272,7 +280,7 @@ public class MyGame {
                     System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Up\n4: Down");
                     move = use.nextInt();
                 }
-                user.move(move, platform, map);
+                user.move(move, platform, map, items);
             } else if(option == 2) {
                 System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Up\n4: Down");
                 int peek = use.nextInt();
@@ -282,7 +290,7 @@ public class MyGame {
                     System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Up\n4: Down");
                     peek = use.nextInt();
                 }
-                peek(peek, platform, map, user);
+                peek(peek, platform, map, user, items);
             } else if(option == 3) {
                 System.out.println("[N]: You open your map. . .");
                 slmp(500);
@@ -326,7 +334,7 @@ public class MyGame {
                         }
                         option = use.nextInt();
                     }
-                    user.inspect(user.getInventory()[option]);
+                    System.out.println(user.inspect(user.getInventory()[option]));
                 } else if(option == 2) {
                     System.out.println("[N]: Which item would you like to drop?");
                     slmp(500);

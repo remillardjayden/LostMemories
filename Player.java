@@ -27,10 +27,10 @@ public class Player extends Character {
     public int getY() { return y; }
     public int getPrevX() { return prevX; }
     public int getPrevY() { return prevY; }
-    public Character[][] move(int direction, Character[][] platform, Wall[][] map) {
+    public Character[][] move(int direction, Character[][] platform, Wall[][] map, Item[][] items) {
         platform[y][x] = null;
         if(direction == 1) {
-            if(map[y][x-1] == null && platform[y][x-1] == null) {
+            if(map[y][x-1] == null && platform[y][x-1] == null && items[y][x-1] == null) {
                 steps++;
                 x--;
                 System.out.println("[N]: You moved left");
@@ -46,12 +46,17 @@ public class Player extends Character {
                     super.damage(5);
                     System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
+            } else if(items[y][x-1] != null) {
+                pickUp(items[y][x-1]);
+                items[y][x-1] = null;
+                steps++;
+                x--;
             } else {
                 super.damage(platform[y][x-1].getDmg());
                 System.out.println("[N]: It's a " + platform[y][x-1].getName() + "! You take " + platform[y][x-1].getDmg() + " damage!");
             }
         } else if(direction == 2) {
-            if(map[y][x+1] == null && platform[y][x+1] == null) {
+            if(map[y][x+1] == null && platform[y][x+1] == null && items[y][x+1] == null) {
                 x++;
                 steps++;
                 System.out.println("[N]: You moved right");
@@ -67,12 +72,17 @@ public class Player extends Character {
                     super.damage(5);
                     System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
+            } else if(items[y][x+1] != null) {
+                pickUp(items[y][x+1]);
+                items[y][x+1] = null;
+                steps++;
+                x++;
             } else {
                 super.damage(platform[y][x+1].getDmg());
                 System.out.println("[N]: It's a " + platform[y][x+1].getName() + "! You take " + platform[y][x+1].getDmg() + " damage!");
             }
         } else if(direction == 3) {
-            if(map[y-1][x] == null && platform[y-1][x] == null) {
+            if(map[y-1][x] == null && platform[y-1][x] == null && items[y-1][x] == null) {
                 y--;
                 steps++;
                 System.out.println("[N]: You moved up");
@@ -88,12 +98,17 @@ public class Player extends Character {
                     super.damage(5);
                     System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
+            } else if(items[y-1][x] != null) {
+                pickUp(items[y-1][x]);
+                items[y-1][x] = null;
+                steps++;
+                y--;
             } else {
                 super.damage(platform[y-1][x].getDmg());
                 System.out.println("[N]: It's a " + platform[y-1][x].getName() + "! You take " + platform[y-1][x].getDmg() + " damage!");
             }
         } else {
-            if(map[y+1][x] == null && platform[y+1][x] == null) {
+            if(map[y+1][x] == null && platform[y+1][x] == null && items[y+1][x] == null) {
                 y++;
                 steps++;
                 System.out.println("[N]: You moved down");
@@ -109,6 +124,11 @@ public class Player extends Character {
                     super.damage(5);
                     System.out.println("[N]: Are you serious. You knew the wall was there.");
                 }
+            } else if(items[y+1][x] != null) {
+                pickUp(items[y+1][x]);
+                items[y+1][x] = null;
+                steps++;
+                y++;
             } else {
                 super.damage(platform[y+1][x].getDmg());
                 System.out.println("[N]: It's a " + platform[y+1][x].getName() + "! You take " + platform[y+1][x].getDmg() + " damage!");
@@ -130,6 +150,7 @@ public class Player extends Character {
         for(int i = 0; i < inventory.length; i++) {
             if(inventory[i] == null) {
                 inventory[i] = item;
+                if(i != 0) { System.out.println("You picked up the '" + item.getName() + "'"); }
                 break;
             }
         }
