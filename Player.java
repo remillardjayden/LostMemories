@@ -180,7 +180,7 @@ public class Player extends Character {
     }
     public String getInv() {
         String fin = "[";
-        for(int i = 0; i < 8; i++) {
+        for(int i = 0; i < inventory.length; i++) {
             if(inventory[i] == null) {
                 fin += "_____, ";
             } else {

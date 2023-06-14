@@ -181,6 +181,7 @@ public class MyGame {
         Item[][] items = new Item[25][25];
         int xPlace = 0;
         int yPlace = 0;
+        int roomCounter = 1;
         int orientation;
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
@@ -216,7 +217,7 @@ public class MyGame {
             placeY = rand.nextInt(23)+1;
         }
         Scanner use = new Scanner(System.in);
-        System.out.println("N: Enter your name: ");
+        System.out.println("[N]: Enter your name: ");
         String name = use.nextLine();
         Player user = new Player(20, name, "Forward", placeX, placeY, 1);
         for(int i = 0; i < 3; i++) {
@@ -250,17 +251,17 @@ public class MyGame {
         // Items
         new Item("Stick", "It's sticky", 1, Memory.allMemories.get(0));
         new Item("Bloody Rock", "It's a bloody rock, mate. Leave it be.", 2, Memory.allMemories.get(1));
-        new Item("Rope", "It seems used", 4, Memory.allMemories.get(2));
-        new Item("Broken Toy", "Destroyed beyond repair", 8, Memory.allMemories.get(3));
-        new Item("Walkie Talkie", "No more batteries, no more voices", 16, Memory.allMemories.get(4));
-        new Item("Shattered Mirror", "You look destroyed within", 32, Memory.allMemories.get(5));
+        new Item("Rope", "It seems used.", 4, Memory.allMemories.get(2));
+        new Item("Broken Toy", "Destroyed beyond repair.", 8, Memory.allMemories.get(3));
+        new Item("Walkie Talkie", "No more batteries, no more voices.", 16, Memory.allMemories.get(4));
+        new Item("Shattered Mirror", "You look destroyed within.", 32, Memory.allMemories.get(5));
         new Item("Dead Dove", "Life wasted, peace gone.", 0, Memory.allMemories.get(6));
-        new Item("Skeleton Skull", "Bits of flesh remain", 64, Memory.allMemories.get(7));
-        new Item("Red Shirt", "It seems like blood..", 0, Memory.allMemories.get(8));
-        new Item("Gas Lamp", "It's entirely used up, someone must've been scared", 128, Memory.allMemories.get(9));
-        new Item("Wilting Lilac", "It's almost died, must've been stepped on", 0, Memory.allMemories.get(10));
-        new Item("Flaming Track Shoes", "Someone was going a bit too quick", 256, Memory.allMemories.get(11));
-        new Item("Bottle", "Contents decay the mind", 0, Memory.allMemories.get(12));
+        new Item("Skeleton Skull", "Bits of flesh remain.", 64, Memory.allMemories.get(7));
+        new Item("Red Shirt", "It seems like blood...", 0, Memory.allMemories.get(8));
+        new Item("Gas Lamp", "It's entirely used up, someone must've been scared.", 128, Memory.allMemories.get(9));
+        new Item("Wilting Lilac", "It's almost died, must've been stepped on.", 0, Memory.allMemories.get(10));
+        new Item("Flaming Track Shoes", "Someone was going a bit too quick.", 256, Memory.allMemories.get(11));
+        new Item("Bottle", "Contents decay the mind.", 0, Memory.allMemories.get(12));
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry", 5);
         new Enemy("Bat", 50, "Right", "He's Count Dracula", 5);
@@ -275,8 +276,7 @@ public class MyGame {
         // Start of story
         playerText(user, "Man this is such a weird maze.. how long have I been walking?");
         playerText(user, "No matter... guess I'll look for the exit..");
-        boolean exit = false;
-        while(user.getHealth() > 0 && !exit) {
+        while(user.getHealth() > 0) {
             System.out.println("[N]: What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
             int option = use.nextInt();
             while(option < 1 || option > 4) {
@@ -312,7 +312,7 @@ public class MyGame {
             } else {
                 System.out.println("[N]: You open your inventory. . .");
                 slmp(500);
-                user.getInv();
+                System.out.println(user.getInv());
                 slmp(500);
                 System.out.println("[N]: What would you like to do?\n1: Inspect an item\n2: Drop an item\n3: Return to original menu");
                 option = use.nextInt();
@@ -349,6 +349,15 @@ public class MyGame {
                         option = use.nextInt();
                     }
                     System.out.println(user.inspect(user.getInventory()[option]));
+                    slmp(500);
+                    System.out.println("[N]: Would you like to see the attached memory?\n1: Yes\n2: No");
+                    int option2 = use.nextInt();
+                    while(option2 < 1 || option2 > 2) {
+                        System.out.println("[N]: Sorry, that isn't valid, try again.");
+                        System.out.println("[N]: Would you like to see the attached memory?\n1: Yes\n2: No");
+                        option2 = use.nextInt();
+                    }
+                    if(option2 == 1) { slowWrite((user.getInventory()[option]).getLinkedMemory().toString()); }
                 } else if(option == 2) {
                     System.out.println("[N]: Which item would you like to drop?");
                     slmp(500);
@@ -410,9 +419,24 @@ public class MyGame {
                     items[yLocation][xLocation] = placed;
                     counter = 0;
                 }
+                roomCounter++;
+                if(roomCounter % 5 == 0) {
+                    if(roomCounter <= 10) {
+                        slowWrite("[" + user.getName().charAt(0) + "]: Man, this place doesn't end, does it? Guess I have to keep walking. . .");
+                        slmp(500);
+                        if(roomCounter > 5) {
+                            slowWrite("[" + user.getName().charAt(0) + "]: I'm starting to have enough of this, I'm gonna start breaking walls or something.");
+                            slmp(500);
+                        }
+                    }
+                }
 			}
         }
         use.close();
+        if(user.getHealth() <= 0) {
+            superSlowWrite("[N]: Oh, such a shame. Now that you've died, you must restart, back from zero.");
+            slmp(250);
+        }
     }
 }
 // Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return, Inventory System
