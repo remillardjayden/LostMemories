@@ -183,6 +183,7 @@ public class MyGame {
         int yPlace = 0;
         int roomCounter = 1;
         int orientation;
+        boolean end = false;
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == 0 || c == 0 || r == 24 || c == 24) {
@@ -276,7 +277,7 @@ public class MyGame {
         // Start of story
         playerText(user, "Man this is such a weird maze.. how long have I been walking?");
         playerText(user, "No matter... guess I'll look for the exit..");
-        while(user.getHealth() > 0) {
+        while(user.getHealth() > 0 && !end) {
             System.out.println("[N]: What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
             int option = use.nextInt();
             while(option < 1 || option > 4) {
@@ -358,6 +359,12 @@ public class MyGame {
                         option2 = use.nextInt();
                     }
                     if(option2 == 1) { slowWrite((user.getInventory()[option]).getLinkedMemory().toString()); }
+                    for(int i = 0; i < user.getInventory().length; i++) {
+                        if(user.getInventory()[i] == Item.allItems.get(Item.allItems.size())) {
+                            end = true;
+                            break;
+                        }
+                    }
                 } else if(option == 2) {
                     System.out.println("[N]: Which item would you like to drop?");
                     slmp(500);
