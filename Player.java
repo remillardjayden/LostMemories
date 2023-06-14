@@ -180,17 +180,17 @@ public class Player extends Character {
     }
     public String getInv() {
         String fin = "[";
-        for(int i = 0; i < inventory.length; i++) {
+        for(int i = 0; i < inventory.length-1; i++) {
             if(inventory[i] == null) {
                 fin += "_____, ";
             } else {
                 fin += inventory[i].getName() + ", ";
             }
         }
-        if(inventory[8] == null) {
+        if(inventory[12] == null) {
             fin += "_____]";
         } else {
-            fin += inventory[8].getName() + "]";
+            fin += inventory[12].getName() + "]";
         }
         return fin;
     }

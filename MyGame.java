@@ -273,7 +273,10 @@ public class MyGame {
                 }
             }
         }
-        user.pickUp(Item.allItems.get(0));
+        for(int i = 0; i < user.getInventory().length-1; i++) {
+            user.pickUp(Item.allItems.get(i));
+        }
+        // user.pickUp(Item.allItems.get(0));
         // Start of story
         playerText(user, "Man this is such a weird maze.. how long have I been walking?");
         playerText(user, "No matter... guess I'll look for the exit..");
@@ -360,7 +363,7 @@ public class MyGame {
                     }
                     if(option2 == 1) { slowWrite((user.getInventory()[option]).getLinkedMemory().toString()); }
                     for(int i = 0; i < user.getInventory().length; i++) {
-                        if(user.getInventory()[i] == Item.allItems.get(Item.allItems.size())) {
+                        if(user.getInventory()[i] == Item.allItems.get(Item.allItems.size()-1)) {
                             end = true;
                             break;
                         }
@@ -449,7 +452,7 @@ public class MyGame {
                     Memory current = user.getInventory()[i].getLinkedMemory();
                     Memory next = user.getInventory()[i-1].getLinkedMemory();
                     user.inspect(user.getInventory()[i]);
-                    slowWrite(current.toString());
+                    if(i != 12) { slowWrite(current.toString()); }
                     slmp(500);
                     if(Memory.allMemories.indexOf(current) - 1 == Memory.allMemories.indexOf(next)) {
                         if(current.getName() == "Upbringing.") {
