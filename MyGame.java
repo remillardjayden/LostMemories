@@ -273,10 +273,7 @@ public class MyGame {
                 }
             }
         }
-        for(int i = 0; i < user.getInventory().length-1; i++) {
-            user.pickUp(Item.allItems.get(i));
-        }
-        // user.pickUp(Item.allItems.get(0));
+        user.pickUp(Item.allItems.get(0));
         // Start of story
         playerText(user, "Man this is such a weird maze.. how long have I been walking?");
         playerText(user, "No matter... guess I'll look for the exit..");
@@ -450,7 +447,12 @@ public class MyGame {
             for(int i = 12; i > -1; i--) {
                 if(user.getInventory()[i] != null) {
                     Memory current = user.getInventory()[i].getLinkedMemory();
-                    Memory next = user.getInventory()[i-1].getLinkedMemory();
+                    Memory next;
+                    if(i != 0) {
+                        next = user.getInventory()[i-1].getLinkedMemory();
+                    } else {
+                        next = current;
+                    }
                     user.inspect(user.getInventory()[i]);
                     if(i != 12) { slowWrite(current.toString()); }
                     slmp(500);
