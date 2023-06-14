@@ -62,6 +62,41 @@ public class MyGame {
             System.out.println("\n");
         }
     }
+	public static Wall[][] newMap() {
+		Wall[][] newMap = new Wall[25][25];
+		for(int r = 0; r < 25; r++) {
+            for(int c = 0; c < 25; c++) {
+                if(r == 0 || c == 0 || r == 24 || c == 24) {
+                    orientation = rand.nextInt(2) + 1;
+                    if(orientation == 1) { 
+                        map[r][c] = new Wall(c, r, "Horizontal", "wall");
+                    } else {
+                        map[r][c] = new Wall(c, r, "Vertical", "wall");
+                    }
+                    if(c == 0 && r == 12 || c == 24 && r == 12) {
+                        map[r][c] = new Wall(c, r, "Vertical", "exit");
+                    } else if (r == 0 && c == 12 || r == 24 && c == 12) {
+                        map[r][c] = new Wall(c, r, "Horizontal", "exit");
+                    }
+                }
+                if(c % 3 == 0 && r % 2 == 0) {
+                    xPlace = rand.nextInt(23)+1;
+                    yPlace = rand.nextInt(23)+1;
+					while(xPlace == user.getX() || yPlace == user.getY()) {
+						xPlace = rand.nextInt(23)+1;
+						yPlace = rand.nextInt(23)+1;
+					}
+                    orientation = rand.nextInt(2) + 1;
+                    if(orientation == 1) { 
+                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Horizontal", "wall");
+                    } else {
+                        map[yPlace][xPlace] = new Wall(yPlace, xPlace, "Vertical", "wall");
+                    }
+                }
+            }
+        }
+		return newMap;
+	}
     public static void peek(int direction, Character[][] platform, Wall[][] map, Player user) {
         if(direction == 1) {
             if(platform[user.getY()][user.getX()-1] == null) {
@@ -225,22 +260,22 @@ public class MyGame {
                 option = use.nextInt();
             }
             if(option == 1) {
-                System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward");
+                System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward\n4: Backward");
                 int move = use.nextInt();
                 while(move < 1 || move > 3) {
                     System.out.println("[N]: Sorry, that isn't valid, try again.");
                     slmp(500);
-                    System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward");
+                    System.out.println("[N]: Which direction would you like to move?\n1: Left\n2: Right\n3: Forward\n4: Backward");
                     move = use.nextInt();
                 }
                 user.move(move, platform, map);
             } else if(option == 2) {
-                System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward");
+                System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward\n4: Backward");
                 int peek = use.nextInt();
                 while(peek < 1 || peek > 3) {
                     System.out.println("[N]: Sorry, that isn't valid, try again.");
                     slmp(500);
-                    System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward");
+                    System.out.println("[N]: Which direction would you like to peek?\n1: Left\n2: Right\n3: Forward\n4: Backward");
                     peek = use.nextInt();
                 }
                 peek(peek, platform, map, user);
@@ -317,6 +352,18 @@ public class MyGame {
                     user.dropItem(option);
                 }
             }
+			if(x == 0 || y == 0 || x == 24 || y == 24) {
+				if(x == 0) {
+					x = 23;
+				} else if(y == 0) {
+					y = 23;
+				} else if(x == 24) {
+					x = 1;
+				} else {
+					y = 1;
+				}
+				map = newMap();
+			}
         }
         use.close();
     }

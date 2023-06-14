@@ -35,8 +35,9 @@ public class Player extends Character {
                 x--;
                 System.out.println("[N]: You moved left");
             } else if(map[y][x-1] != null) {
-                if(map[y][x-1].toString() == "EXIT") {
+                if(map[y][x-1].toString() == "EXIT" || map[y][x-1].toString() == "DOOR") {
                     steps++;
+					x--;
                     System.out.println("[N]: You enter the next room");
                 } else if(!map[y][x-1].getKnowledge()) {
                     super.damage(1);
@@ -56,6 +57,7 @@ public class Player extends Character {
                 System.out.println("[N]: You moved right");
             } else if(map[y][x+1] != null) {
                 if(map[y][x+1].toString() == "EXIT") {
+					x++;
                     steps++;
                     System.out.println("[N]: You enter the next room");
                 } else if(!map[y][x+1].getKnowledge()) {
@@ -76,6 +78,7 @@ public class Player extends Character {
                 System.out.println("[N]: You moved forward");
             } else if(map[y-1][x] != null) {
                 if(map[y-1][x].toString() == "EXIT") {
+					y--;
                     steps++;
                     System.out.println("[N]: You enter the next room");
                 } else if(!map[y-1][x].getKnowledge()) {
@@ -96,6 +99,7 @@ public class Player extends Character {
                 System.out.println("[N]: You moved backward");
             } else if(map[y+1][x] != null) {
                 if(map[y+1][x].toString() == "EXIT") {
+					y++;
                     steps++;
                     System.out.println("[N]: You enter the next room");
                 } else if(!map[y+1][x].getKnowledge()) {
