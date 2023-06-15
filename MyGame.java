@@ -169,6 +169,8 @@ public class MyGame {
         int roomCounter = 1;
         int orientation;
         boolean end = false;
+        String[] voices = new String[4];
+        String[] options = new String[4];
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == 0 || c == 0 || r == 24 || c == 24) {
@@ -251,6 +253,16 @@ public class MyGame {
         // Enemies
         new Enemy("Bat", 50, "Left", "He's Booberry", 5);
         new Enemy("Bat", 50, "Right", "He's Count Dracula", 5);
+        // Npcs
+        voices[0] = "Hi there, my name's Hirune! Hirune Helios! It's a pleasure to meet you!";
+        voices[1] = "My name means 'Three Suns', isn't that so cool?!";
+        voices[2] = "Aw man, you've been walking around for so long. That's so crazy!";
+        voices[3] = "Crazy? I was crazy once! They locked me in a room; a rubber room with rats, and rats drive me crazy.";
+        options[0] = "What was that?";
+        options[1] = "What would you like to talk about?";
+        options[2] = "How long have you been here, kid?";
+        options[3] = "How old even are you?";
+        new Npc("Hirune Helios", voices, options, 5, 5);
         for(int r = 0; r < 25; r++) {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
