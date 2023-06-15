@@ -16,30 +16,15 @@ public class MyGame {
             ex.printStackTrace();
         }
     }
-    public static void superSlowWrite(String txt) {
+    public static void write(String txt, int time) {
         for(int i = 0; i < txt.length(); i++) {
             System.out.print(txt.charAt(i));
-            slmp(160);
+            slmp(time);
         }
-        System.out.println();
-    }
-    public static void slowWrite(String txt) {
-        for(int i = 0; i < txt.length(); i++) {
-            System.out.print(txt.charAt(i));
-            slmp(50);
-        }
-        System.out.println();
-    }
-    public static void quickWrite(String txt) {
-        for(int i = 0; i < txt.length(); i++) {
-            System.out.print(txt.charAt(i));
-            slmp(20);
-        }
-        System.out.println();
     }
     public static void playerText(Player user, String txt) {
         System.out.print("[" + user.getName().charAt(0) + "]: ");
-        slowWrite(txt);
+        write(txt, 50);
         slmp(500);
     }
     public static void openMap(Wall[][] map, Player user, Character[][] platform, Item[][] items) {
@@ -275,8 +260,8 @@ public class MyGame {
         }
         user.pickUp(Item.allItems.get(0));
         // Start of story
-        playerText(user, "Man this is such a weird maze.. how long have I been walking?");
-        playerText(user, "No matter... guess I'll look for the exit..");
+        playerText(user, "Man this is such a weird maze.. how long have I been walking?\n");
+        playerText(user, "No matter... guess I'll look for the exit..\n");
         while(user.getHealth() > 0 && !end) {
             System.out.println("[N]: What would you like to do?\n1: Move\n2: Peek\n3: Open Map\n4: Open Inventory");
             int option = use.nextInt();
@@ -358,7 +343,7 @@ public class MyGame {
                         System.out.println("[N]: Would you like to see the attached memory?\n1: Yes\n2: No");
                         option2 = use.nextInt();
                     }
-                    if(option2 == 1) { slowWrite((user.getInventory()[option]).getLinkedMemory().toString()); }
+                    if(option2 == 1) { write((user.getInventory()[option]).getLinkedMemory().toString(), 50); }
                     for(int i = 0; i < user.getInventory().length; i++) {
                         if(user.getInventory()[i] == Item.allItems.get(Item.allItems.size()-1)) {
                             end = true;
@@ -429,10 +414,10 @@ public class MyGame {
                 roomCounter++;
                 if(roomCounter % 5 == 0) {
                     if(roomCounter <= 10) {
-                        slowWrite("[" + user.getName().charAt(0) + "]: Man, this place doesn't end, does it? Guess I have to keep walking. . .");
+                        write("[" + user.getName().charAt(0) + "]: Man, this place doesn't end, does it? Guess I have to keep walking. . .", 50);
                         slmp(500);
                         if(roomCounter > 5) {
-                            slowWrite("[" + user.getName().charAt(0) + "]: I'm starting to have enough of this, I'm gonna start breaking walls or something.");
+                            write("[" + user.getName().charAt(0) + "]: I'm starting to have enough of this, I'm gonna start breaking walls or something.", 50);
                             slmp(500);
                         }
                     }
@@ -441,7 +426,7 @@ public class MyGame {
         }
         use.close();
         if(user.getHealth() <= 0) {
-            superSlowWrite("[N]: Oh, such a shame. Now that you've died, you must restart, back from zero.");
+            write("[N]: Oh, such a shame. Now that you've died, you must restart, back from zero.", 160);
             slmp(250);
         } else if(end) {
             for(int i = 12; i > -1; i--) {
@@ -454,39 +439,42 @@ public class MyGame {
                         next = current;
                     }
                     user.inspect(user.getInventory()[i]);
-                    if(i != 12) { slowWrite(current.toString()); }
+                    if(i != 12) { write(current.toString(), 50); }
                     slmp(500);
                     if(Memory.allMemories.indexOf(current) - 1 == Memory.allMemories.indexOf(next)) {
                         if(current.getName() == "Upbringing.") {
-                            slowWrite("[D]: Come here you little brat! You aren't telling anyone what you saw!");
+                            write("[D]: Come here you little brat! You aren't telling anyone what you saw!", 50);
                         } else if(current.getName() == "Outrun.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: Finally, I got away from him. Wait... where am I?");
+                            write("[" + user.getName().charAt(0) + "]: Finally, I got away from him. Wait... where am I?", 50);
                         } else if(current.getName() == "Yourself.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: Wait, is that him? Oh no, I need to hide, now.");
+                            write("[" + user.getName().charAt(0) + "]: Wait, is that him? Oh no, I need to hide, now.", 50);
                         } else if(current.getName() == "Retreat.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: It's time to get rid of this bastard... Right here, Dad.");
+                            write("[" + user.getName().charAt(0) + "]: It's time to get rid of this bastard... Right here, Dad.", 50);
                         } else if(current.getName() == "Overcome.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: You had this coming, Dad. You killed Mom. You're a horrible person.");
+                            write("[" + user.getName().charAt(0) + "]: You had this coming, Dad. You killed Mom. You're a horrible person.", 50);
                         } else if(current.getName() == "Finale.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: I need to clean this mess up... and get rid of that body.");
+                            write("[" + user.getName().charAt(0) + "]: I need to clean this mess up... and get rid of that body.", 50);
                         } else if(current.getName() == "Youth.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: I'm free now, aren't I? So why am I so upset..?");
+                            write("[" + user.getName().charAt(0) + "]: I'm free now, aren't I? So why am I so upset..?", 50);
                         } else if(current.getName() == "Altered.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: Remember, " + user.getName() + ", keep to yourself, don't slip up, and you'll be fine.");
+                            write("[" + user.getName().charAt(0) + "]: Remember, " + user.getName() + ", keep to yourself, don't slip up, and you'll be fine.", 50);
                         } else if(current.getName() == "Whispers.") {
-                            slowWrite("[R]: Hey there man, you doing alright?\n[L]: Yeah man, you don't look too good...\n[R]: Wait...");
+                            write("[R]: Hey there man, you doing alright?\n[L]: Yeah man, you don't look too good...", 50);
+                            System.out.println();
+                            write("[R]: Wait...", 50);
                         } else if(current.getName() == "Accountable.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: Well, gotta run. See you guys never! Hahahaha!");
+                            write("[" + user.getName().charAt(0) + "]: Well, gotta run. See you guys never! Hahahaha!", 50);
                         } else if(current.getName() == "Run.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: Hey guys, easy on the wrists jeez... wait is that rope?");
+                            write("[" + user.getName().charAt(0) + "]: Hey guys, easy on the wrists jeez... wait is that rope?", 50);
                         } else if(current.getName() == "Away.") {
-                            slowWrite("[" + user.getName().charAt(0) + "]: No, wait guys! I won't survive that! Don't do this! No wai- *woosh*");
+                            write("[" + user.getName().charAt(0) + "]: No, wait guys! I won't survive that! Don't do this! No wai- *woosh*", 50);
                         }
+                        System.out.println();
                         slmp(500);
                     }
                 }
             }
-            superSlowWrite("*THUD*       \n[Player]: . . .");
+            write("*THUD*       \n[Player]: . . .", 160);
         }
     }
 }
