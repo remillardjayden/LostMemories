@@ -490,5 +490,3 @@ public class MyGame {
         }
     }
 }
-// Peek, Move (Left, Right, Forward [L, R, F]), Inspect, Open Map, Return, Inventory System
-// Ending: Relive memories, fill in gaps, end with a *thud* and then silence
