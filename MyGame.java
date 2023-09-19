@@ -252,7 +252,7 @@ public class MyGame {
         new Item("Skeleton Skull", "Bits of flesh remain.", 64, Memory.allMemories.get(7));
         new Item("Red Shirt", "It seems like blood...", 0, Memory.allMemories.get(8));
         new Item("Gas Lamp", "It's entirely used up, someone must've been scared.", 128, Memory.allMemories.get(9));
-        new Item("Wilting Lilac", "It's almost died, must've been stepped on.", 0, Memory.allMemories.get(10));
+        new Item("Wilting Lilac", "It's almost dead, must've been stepped on.", 0, Memory.allMemories.get(10));
         new Item("Flaming Track Shoes", "Someone was going a bit too quick.", 256, Memory.allMemories.get(11));
         new Item("Bottle", "Contents decay the mind.", 0, Memory.allMemories.get(12));
         // Enemies
