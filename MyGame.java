@@ -40,6 +40,11 @@ public class MyGame {
                     } else if(platform[r][c] == user) {
                         System.out.print("USER ");
                     }
+                    for(int i = 0; i < Enemy.allEnemies.size(); i++) {
+                        if(platform[r][c] == Enemy.allEnemies.get(i)) {
+                            System.out.print("ENMY ");
+                        }
+                    }
                 } else {
                     System.out.print(map[r][c] + " ");
                 }
@@ -267,6 +272,11 @@ public class MyGame {
             for(int c = 0; c < 25; c++) {
                 if(r == user.getY() && c == user.getX()) {
                     platform[r][c] = user;
+                }
+                for(int i = 0; i < Enemy.allEnemies.size(); i++) {
+                    if(r == Enemy.allEnemies.get(i).getY() && c == Enemy.allEnemies.get(i).getX()) {
+                        platform[r][c] = Enemy.allEnemies.get(i);
+                    }
                 }
             }
         }
